@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Mike Cubberly - GTM Partnerships & Revenue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0f1117;
+    --mid: #4a4f5e;
+    --light: #9099ab;
+    --rule: #dde1e8;
+    --accent: #1a4a6b;
+    --accent-warm: #c9893a;
+    --bg: #f7f5f1;
+    --white: #ffffff;
+    --sidebar-bg: #0f1117;
+    --sidebar-text: #e8eaf0;
+    --sidebar-muted: #828899;
+    --sidebar-accent: #c9893a;
+  }
+
+  html { font-size: 15px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem 1rem;
+  }
+
+  .page {
+    width: 100%;
+    max-width: 1040px;
+    background: var(--white);
+    box-shadow: 0 8px 48px rgba(15,17,23,0.13), 0 2px 8px rgba(15,17,23,0.06);
+    display: grid;
+    grid-template-columns: 285px 1fr;
+    animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    background: var(--sidebar-bg);
+    padding: 2.8rem 1.8rem 2.8rem 2rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .sidebar::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,137,58,0.12), transparent 70%);
+    pointer-events: none;
+  }
+
+  .sidebar-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.05rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.3rem;
+  }
+
+  .sidebar-title {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sidebar-accent);
+    margin-bottom: 2rem;
+  }
+
+  .sidebar-divider {
+    width: 32px; height: 2px;
+    background: var(--sidebar-accent);
+    margin-bottom: 2rem;
+    border: none;
+  }
+
+  .sidebar-section { margin-bottom: 2rem; }
+
+  .sidebar-section-label {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--sidebar-muted);
+    margin-bottom: 0.85rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .contact-icon {
+    width: 14px; height: 14px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    opacity: 0.5;
+    color: var(--sidebar-text);
+  }
+
+  .contact-item a,
+  .contact-item span {
+    font-size: 0.78rem;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    line-height: 1.4;
+    word-break: break-all;
+  }
+
+  .contact-item a:hover { color: var(--sidebar-accent); }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem 0.6rem;
+  }
+
+  .stat-box {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 6px;
+    padding: 0.7rem 0.6rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--sidebar-accent);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.57rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--sidebar-muted);
+    margin-top: 0.3rem;
+    display: block;
+    text-transform: uppercase;
+    line-height: 1.35;
+  }
+
+  .advisory-item {
+    font-size: 0.77rem;
+    color: var(--sidebar-text);
+    line-height: 1.55;
+    padding-left: 0.9rem;
+    position: relative;
+    margin-bottom: 0.6rem;
+  }
+
+  .advisory-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--sidebar-accent);
+  }
+
+  .skill-tag {
+    display: inline-block;
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--sidebar-text);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 3px;
+    padding: 0.2rem 0.5rem;
+    margin: 0.18rem 0.18rem 0 0;
+  }
+
+  /* MAIN */
+  .main {
+    padding: 2.8rem 2.6rem 2.8rem 2.4rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.4rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .main-header-eyebrow {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    margin-bottom: 0.5rem;
+  }
+
+  .main-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.7rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .main-header h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .section { margin-bottom: 1.8rem; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .section-header h2 {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mid);
+    white-space: nowrap;
+  }
+
+  .section-header::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .summary-text {
+    font-size: 0.82rem;
+    line-height: 1.8;
+    color: var(--mid);
+    font-weight: 300;
+  }
+
+  .summary-text strong { color: var(--ink); font-weight: 600; }
+
+  /* Company logo in bar */
+  .company-logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    object-fit: contain;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(15,17,23,0.12);
+  }
+
+  /* Per-logo backgrounds now set via inline style */
+
+  .company-logo-fallback {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    background: var(--accent);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    display: none !important;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    letter-spacing: 0;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* COMPANY BLOCKS */
+  .company-block {
+    margin-bottom: 1.8rem;
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .company-block:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .company-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, rgba(26,74,107,0.07) 0%, rgba(26,74,107,0.03) 100%);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 0.75rem 1rem 0.75rem 0.85rem;
+    margin-bottom: 0.85rem;
+    box-shadow: 0 1px 4px rgba(15,17,23,0.06);
+  }
+
+  .company-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .company-bar-right {
+    flex-shrink: 0;
+  }
+
+  .company-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--accent);
+    text-decoration: none;
+    line-height: 1.15;
+    display: block;
+  }
+
+  .company-name:hover { color: var(--accent-warm); }
+
+  .company-tenure {
+    font-size: 0.63rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(26,74,107,0.1);
+    border: 1px solid rgba(26,74,107,0.18);
+    border-radius: 20px;
+    padding: 0.22rem 0.7rem;
+    white-space: nowrap;
+  }
+
+  /* Sub-role date displayed inline below title */
+  .role-sub-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.05rem;
+  }
+
+  .role-sub-date {
+    font-size: 0.6rem;
+    color: var(--light);
+    letter-spacing: 0.03em;
+  }
+
+  /* Role progression track */
+  .role-track {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.8rem;
+    padding-left: 0.1rem;
+  }
+
+  .role-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.65rem;
+    position: relative;
+    padding-left: 0;
+    margin-bottom: 0.08rem;
+  }
+
+  .role-row::before {
+    display: none;
+  }
+
+  .role-title-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.25;
+  }
+
+  .role-title-sub {
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--mid);
+    line-height: 1.35;
+  }
+
+  .role-date {
+    font-size: 0.65rem;
+    color: var(--light);
+    white-space: nowrap;
+    letter-spacing: 0.03em;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  .promo-pill {
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    background: rgba(201,137,58,0.1);
+    border-radius: 20px;
+    padding: 0.12rem 0.55rem;
+    margin: 0.18rem 0 0.18rem 0;
+    display: inline-block;
+    width: fit-content;
+  }
+
+  /* Brand tags */
+  .brand-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.38rem;
+    margin: 0.5rem 0 0.85rem 0;
+  }
+
+  .brand-tag {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: var(--accent);
+    background: rgba(26,74,107,0.07);
+    border: 1px solid rgba(26,74,107,0.18);
+    border-radius: 3px;
+    padding: 0.18rem 0.52rem;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+  }
+
+  .brand-tag:hover { background: rgba(26,74,107,0.14); }
+
+  /* Bullets */
+  .role-bullets { list-style: none; padding: 0; }
+
+  .role-bullets li {
+    font-size: 0.79rem;
+    line-height: 1.72;
+    color: var(--mid);
+    padding-left: 1.1rem;
+    position: relative;
+    margin-bottom: 0.32rem;
+  }
+
+  .role-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 9px;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--accent-warm);
+  }
+
+  .role-bullets a { color: var(--accent); text-decoration: none; }
+  .role-bullets a:hover { color: var(--accent-warm); }
+
+  .tools-category {
+    margin-bottom: 0.85rem;
+  }
+
+  .tools-cat-label {
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sidebar-accent);
+    margin-bottom: 0.35rem;
+  }
+
+  .tools-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.22rem;
+  }
+
+  .tool-tag {
+    display: inline-block;
+    font-size: 0.62rem;
+    font-weight: 400;
+    color: rgba(232,234,240,0.75);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 3px;
+    padding: 0.15rem 0.42rem;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; max-width: 100%; }
+    .company-block { page-break-inside: avoid; }
+  }
+
+  @media (max-width: 740px) {
+    .page { grid-template-columns: 1fr; }
+    .sidebar { padding: 2rem 1.6rem; }
+    .stat-grid { grid-template-columns: repeat(3, 1fr); }
+    .main { padding: 2rem 1.6rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-name">Mike<br>Cubberly</div>
+    <div class="sidebar-title">GTM Partnerships &amp; Revenue</div>
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Contact</div>
+
+      <div class="contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Chicago, IL &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="44" height="10" viewBox="0 0 44 10" style="display:inline-block;vertical-align:middle;margin-top:-1px"><g fill="#c9893a"><!-- Star 1 --><polygon points="5,0 5.6,3.5 9,2.5 6.5,5 9,7.5 5.6,6.5 5,10 4.4,6.5 1,7.5 3.5,5 1,2.5 4.4,3.5"/><polygon points="16,0 16.6,3.5 20,2.5 17.5,5 20,7.5 16.6,6.5 16,10 15.4,6.5 12,7.5 14.5,5 12,2.5 15.4,3.5"/><polygon points="28,0 28.6,3.5 32,2.5 29.5,5 32,7.5 28.6,6.5 28,10 27.4,6.5 24,7.5 26.5,5 24,2.5 27.4,3.5"/><polygon points="39,0 39.6,3.5 43,2.5 40.5,5 43,7.5 39.6,6.5 39,10 38.4,6.5 35,7.5 37.5,5 35,2.5 38.4,3.5"/></g></svg></span>
+      </div>
+      <div class="contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <a href="/cdn-cgi/l/email-protection#9af7f3f1ffdaf8f5eeeef6ffe8f5f9f1ffeefde8f5edeef2b4f9f5f7"><span class="__cf_email__" data-cfemail="bcd1d5d7d9fcded3c8c8d0d9ced3dfd7d9c8dbced3cbc8d492dfd3d1">[email&#160;protected]</span></a>
+      </div>
+      <div class="contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.62 19.79 19.79 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14z"/></svg>
+        <span>847.361.9186</span>
+      </div>
+      <div class="contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        <a href="https://www.linkedin.com/in/mikecubberly/" target="_blank">linkedin.com/in/mikecubberly</a>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">By the Numbers</div>
+      <div class="stat-grid">
+        <div class="stat-box">
+          <span class="stat-num">12+</span>
+          <span class="stat-label">Years GTM Experience</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">60K+</span>
+          <span class="stat-label">RevGenius Members Led</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">40+</span>
+          <span class="stat-label">MDRs Hired &amp; Managed at Verkada</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">20+</span>
+          <span class="stat-label">Partner Accounts Sold &amp; Managed at Glencoco</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">$3.75M</span>
+          <span class="stat-label">Avg Quarterly Pipeline per Verkada MDR</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-num">45→7</span>
+          <span class="stat-label">Days to Onboard a Partner at Glencoco</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Advisory Roles</div>
+      <div class="advisory-item">GTM Advisor at Airscale - helping the team scale outbound and data operations across partner and customer-facing channels.</div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Core Competencies</div>
+      <span class="skill-tag">Partner Ecosystems</span>
+      <span class="skill-tag">Channel Strategy</span>
+      <span class="skill-tag">Co-Sell Motions</span>
+      <span class="skill-tag">Revenue Operations</span>
+      <span class="skill-tag">ICP Design</span>
+      <span class="skill-tag">Founder Coaching</span>
+      <span class="skill-tag">GTM Playbooks</span>
+      <span class="skill-tag">Pipeline Development</span>
+      <span class="skill-tag">Community-Led Growth</span>
+      <span class="skill-tag">Talent Placement</span>
+      <span class="skill-tag">Sales Automation</span>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Tools &amp; Tech Stack</div>
+
+      <div class="tools-category">
+        <div class="tools-cat-label">AI &amp; Research</div>
+        <div class="tools-tags">
+          <span class="tool-tag">ChatGPT</span><span class="tool-tag">Claude</span><span class="tool-tag">Gemini</span><span class="tool-tag">Grok</span><span class="tool-tag">Perplexity</span><span class="tool-tag">GenSpark</span><span class="tool-tag">NapkinAI</span>
+        </div>
+      </div>
+
+      <div class="tools-category">
+        <div class="tools-cat-label">Outbound &amp; Prospecting</div>
+        <div class="tools-tags">
+          <span class="tool-tag">Apollo.io</span><span class="tool-tag">HeyReach</span><span class="tool-tag">Instantly</span><span class="tool-tag">Outreach</span><span class="tool-tag">Clay</span><span class="tool-tag">OrangeSlice</span><span class="tool-tag">Airscale</span><span class="tool-tag">IcyPeas</span><span class="tool-tag">Prospeo</span><span class="tool-tag">RB2B</span><span class="tool-tag">Sumble</span><span class="tool-tag">CompanyEnrich</span><span class="tool-tag">GojiBerry</span>
+        </div>
+      </div>
+
+      <div class="tools-category">
+        <div class="tools-cat-label">CRM &amp; Revenue Ops</div>
+        <div class="tools-tags">
+          <span class="tool-tag">HubSpot</span><span class="tool-tag">Salesforce</span><span class="tool-tag">Nutshell CRM</span><span class="tool-tag">Clarify</span><span class="tool-tag">Retool</span><span class="tool-tag">Looker</span>
+        </div>
+      </div>
+
+      <div class="tools-category">
+        <div class="tools-cat-label">Automation &amp; Ops</div>
+        <div class="tools-tags">
+          <span class="tool-tag">Zapier</span><span class="tool-tag">Make.com</span><span class="tool-tag">Airtable</span><span class="tool-tag">Monday</span><span class="tool-tag">Gusto</span><span class="tool-tag">Freckle</span><span class="tool-tag">SyftData</span><span class="tool-tag">Syft</span>
+        </div>
+      </div>
+
+      <div class="tools-category">
+        <div class="tools-cat-label">Build &amp; Deploy</div>
+        <div class="tools-tags">
+          <span class="tool-tag">Replit</span><span class="tool-tag">Framer</span><span class="tool-tag">Webflow</span><span class="tool-tag">Softr</span><span class="tool-tag">Netlify</span><span class="tool-tag">Loveable</span>
+        </div>
+      </div>
+
+      <div class="tools-category">
+        <div class="tools-cat-label">Comms &amp; Productivity</div>
+        <div class="tools-tags">
+          <span class="tool-tag">Slack</span><span class="tool-tag">Discord</span><span class="tool-tag">Loom</span><span class="tool-tag">Fathom</span><span class="tool-tag">Calendly</span><span class="tool-tag">LunaCal</span><span class="tool-tag">Wispr Flow</span><span class="tool-tag">Yutori</span><span class="tool-tag">LinkedIn</span>
+        </div>
+      </div>
+
+      <div class="tools-category">
+        <div class="tools-cat-label">Design &amp; Data</div>
+        <div class="tools-tags">
+          <span class="tool-tag">Canva</span><span class="tool-tag">Google Sheets</span><span class="tool-tag">Google Suite</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <div class="main-header">
+      <div class="main-header-eyebrow">Mike Cubberly</div>
+      <h1>Operator. Builder.<br><em>GTM Ecosystem Architect.</em></h1>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="section">
+      <div class="section-header"><h2>Summary</h2></div>
+      <p class="summary-text">
+        Operator-founder and GTM professional with <strong>12+ years</strong> building and managing partner ecosystems, channel relationships, and revenue-driving alliances across high-growth SaaS environments. As founder of <strong>Bottle Rocket Growth</strong>, I built the company to <strong>$350K ARR</strong> and have since expanded into multiple operating arms - including GTM talent placement and motorsport partnerships. I lead GTM strategy for a <strong>60,000+ member community</strong> at RevGenius, serve as a <strong>GTM advisor to Airscale</strong>, and have a track record of growing into leadership at every organization I have joined. I thrive at the intersection of partner development, co-selling strategy, and ecosystem-building.
+      </p>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="section">
+      <div class="section-header"><h2>Experience</h2></div>
+
+      <!-- BOTTLE ROCKET GROWTH -->
+      <div class="company-block">
+        <div class="company-bar">
+          <div class="company-bar-left">
+            <a href="https://bottlerocketgrowth.com" target="_blank" style="display:inline-flex;align-items:center;flex-shrink:0;"><img class="company-logo" style="background:#313743;padding:5px;border-radius:8px;" src="data:image/png;base64,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" alt=""></a>
+            <span class="company-logo-fallback">BRG</span>
+            <a class="company-name" href="https://bottlerocketgrowth.com" target="_blank">Bottle Rocket Growth</a>
+          </div>
+          <div class="company-bar-right">
+            <span class="company-tenure">Nov 2024 – Present</span>
+          </div>
+        </div>
+
+        <div class="role-track">
+          <div class="role-row top">
+            <span class="role-title-main">Founder &amp; CEO</span>
+          </div>
+        </div>
+
+        <div class="brand-row">
+          <a class="brand-tag" href="https://bottlerocketgrowth.com" target="_blank">Bottle Rocket Growth - GTM Consultancy</a>
+          <a class="brand-tag" href="https://bottlerocketracing.com" target="_blank">Bottle Rocket Racing - GTM for Race Teams</a>
+          <span class="brand-tag">Bottle Rocket Talent - GTM Operator &amp; Leader Placement</span>
+        </div>
+
+        <ul class="role-bullets">
+          <li>Built Bottle Rocket Growth from zero to <strong>$350K ARR</strong>, expanding from a GTM consultancy into multiple operating arms: <a href="https://bottlerocketracing.com" target="_blank">Bottle Rocket Racing</a>, which brings GTM strategy and sponsorship partnerships to motorsport teams, and <strong>Bottle Rocket Talent</strong>, which places go-to-market operators and leaders into high-growth companies.</li>
+          <li>Serve as the primary strategic partner to early-stage founders across GTM execution, sales motion design, and pipeline development - embedding directly into their teams to shape messaging, positioning, and partner-facing processes.</li>
+          <li>Coach and advise early-stage founders - especially technical founders - on how to founder-sell: developing the muscle to lead sales conversations, build partner relationships, and close their own deals before making their first sales hire.</li>
+          <li>Support clients in identifying channel relationships, design partners, and strategic alliances.</li>
+          <li>Serve as a GTM advisor to Airscale, providing ongoing counsel on partner strategy, ICP targeting, and revenue operations.</li>
+          <li>Design and implement partner-ready CRM systems, tech stacks, and workflow automations that equip teams to manage partner pipelines at scale.</li>
+        </ul>
+      </div>
+
+      <!-- REVGENIUS -->
+      <div class="company-block">
+        <div class="company-bar">
+          <div class="company-bar-left">
+            <a href="https://revgenius.com" target="_blank" style="display:inline-flex;align-items:center;flex-shrink:0;"><img class="company-logo" style="background:#e1fd96;padding:5px;border-radius:8px;" src="data:image/png;base64,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" alt=""></a>
+            <span class="company-logo-fallback">RG</span>
+            <a class="company-name" href="https://revgenius.com" target="_blank">RevGenius</a>
+          </div>
+          <div class="company-bar-right">
+            <span class="company-tenure">Feb 2024 – Present</span>
+          </div>
+        </div>
+
+        <div class="role-track">
+          <div class="role-row top">
+            <span class="role-title-main">Head of Community</span>
+            <span class="role-date">Dec 2024 – Present</span>
+          </div>
+          <div class="promo-pill">Promoted from</div>
+          <div class="role-row">
+            <div class="role-sub-wrap">
+              <span class="role-title-sub">Community Manager</span>
+              <span class="role-sub-date">Feb – Dec 2024</span>
+            </div>
+          </div>
+        </div>
+
+        <ul class="role-bullets">
+          <li>Joined as Community Manager and was promoted to Head of Community - taking full ownership of strategy and programming for a <strong>60,000+ member</strong> GTM and RevOps peer ecosystem for revenue leaders.</li>
+          <li>Built and lead a team of 6 channel moderators and 1 community lead, systematizing internal growth motions and running engagement programs that drive sustained participation across the community.</li>
+          <li>Negotiate and manage partnerships with member organizations, delivering targeted GTM workshops and co-branded programming across sales, marketing, and customer success functions.</li>
+          <li>Advise and mentor early-stage founders on partner development, pipeline generation, and co-selling strategy - acting as a connector between member organizations and growth opportunities.</li>
+        </ul>
+      </div>
+
+      <!-- GLENCOCO -->
+      <div class="company-block">
+        <div class="company-bar">
+          <div class="company-bar-left">
+            <a href="https://glencoco.com" target="_blank" style="display:inline-flex;align-items:center;flex-shrink:0;"><img class="company-logo" style="background:#ffffff;padding:5px;border-radius:8px;border:1px solid rgba(15,17,23,0.08);" src="data:image/png;base64,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" alt=""></a>
+            <span class="company-logo-fallback">GC</span>
+            <a class="company-name" href="https://glencoco.com" target="_blank">Glencoco</a>
+          </div>
+          <div class="company-bar-right">
+            <span class="company-tenure">Dec 2022 – Jan 2024 · 1 yr 2 mos</span>
+          </div>
+        </div>
+
+        <div class="role-track">
+          <div class="role-row top">
+            <span class="role-title-main">Head of Customer Success</span>
+            <span class="role-date">Aug 2023 – Jan 2024</span>
+          </div>
+          <div class="promo-pill">Promoted from</div>
+          <div class="role-row">
+            <div class="role-sub-wrap">
+              <span class="role-title-sub">Community &amp; Platform Manager - Engagement &amp; Enablement</span>
+              <span class="role-sub-date">Jan – Aug 2023</span>
+            </div>
+          </div>
+          <div class="promo-pill">Hired Full-Time from</div>
+          <div class="role-row">
+            <div class="role-sub-wrap">
+              <span class="role-title-sub">GTM Consultant, User Community (Contract)</span>
+              <span class="role-sub-date">Dec 2022 – Jan 2023</span>
+            </div>
+          </div>
+        </div>
+
+        <ul class="role-bullets">
+          <li>Started as a contract GTM consultant, was hired full-time to own user engagement and enablement, and was promoted to Head of Customer Success within the year - taking ownership of the entire customer side of the marketplace.</li>
+          <li>Sold, onboarded, and managed <strong>20+ startup partner accounts</strong> simultaneously - delivering custom ICP targeting frameworks and go-to-market playbooks that drove measurable pipeline outcomes for each partner.</li>
+          <li>Played a foundational role in scaling the world's first SDR marketplace from launch to <strong>4,000+ users</strong>, with partner success and adoption as the core growth lever.</li>
+          <li>Reduced partner onboarding time from <strong>45 days to 7 days</strong> by building scalable enablement frameworks, dramatically accelerating partner time-to-value.</li>
+        </ul>
+      </div>
+
+      <!-- PRIMER -->
+      <div class="company-block">
+        <div class="company-bar">
+          <div class="company-bar-left">
+            <a href="https://sayprimer.com" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:42px;height:42px;background:#262142;border-radius:8px;overflow:hidden;"><img class="company-logo" style="background:#262142;padding:4px;border-radius:8px;object-fit:contain;object-position:center center;width:42px;height:42px;" src="data:image/png;base64,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" alt=""></a>
+            <span class="company-logo-fallback">PR</span>
+            <a class="company-name" href="https://sayprimer.com" target="_blank">Primer</a>
+          </div>
+          <div class="company-bar-right">
+            <span class="company-tenure">Apr – Oct 2022</span>
+          </div>
+        </div>
+
+        <div class="role-track">
+          <div class="role-row top">
+            <span class="role-title-main">Full-Cycle B2B Account Executive</span>
+          </div>
+        </div>
+
+        <ul class="role-bullets">
+          <li>Partnered with B2B marketing teams to unlock better targeting and campaign outcomes using Primer's audience data platform - driving new business while surfacing partner feedback to shape future go-to-market strategy.</li>
+        </ul>
+      </div>
+
+      <!-- VERKADA -->
+      <div class="company-block">
+        <div class="company-bar">
+          <div class="company-bar-left">
+            <a href="https://verkada.com" target="_blank" style="display:inline-flex;align-items:center;flex-shrink:0;"><img class="company-logo" style="background:#ffffff;padding:5px;border-radius:8px;border:1px solid rgba(15,17,23,0.08);" src="data:image/png;base64,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" alt=""></a>
+            <span class="company-logo-fallback">VK</span>
+            <a class="company-name" href="https://verkada.com" target="_blank">Verkada</a>
+          </div>
+          <div class="company-bar-right">
+            <span class="company-tenure">Aug 2019 – Apr 2022 · 2 yrs 9 mos</span>
+          </div>
+        </div>
+
+        <div class="role-track">
+          <div class="role-row top">
+            <span class="role-title-main">Expansion Marketing Development Manager</span>
+            <span class="role-date">Aug 2021 – Apr 2022</span>
+          </div>
+          <div class="promo-pill">Promoted from</div>
+          <div class="role-row">
+            <div class="role-sub-wrap">
+              <span class="role-title-sub">Marketing Development Manager</span>
+              <span class="role-sub-date">Dec 2020 – Aug 2021</span>
+            </div>
+          </div>
+          <div class="promo-pill">Promoted from</div>
+          <div class="role-row">
+            <div class="role-sub-wrap">
+              <span class="role-title-sub">Marketing Development Team Lead</span>
+              <span class="role-sub-date">Aug – Dec 2020</span>
+            </div>
+          </div>
+          <div class="promo-pill">Promoted from</div>
+          <div class="role-row">
+            <div class="role-sub-wrap">
+              <span class="role-title-sub">Founding Marketing Development Representative (MDR)</span>
+              <span class="role-sub-date">Dec 2019 – Aug 2020</span>
+            </div>
+          </div>
+          <div class="promo-pill">Promoted from</div>
+          <div class="role-row">
+            <div class="role-sub-wrap">
+              <span class="role-title-sub">Sales Development Representative (SDR)</span>
+              <span class="role-sub-date">Aug – Dec 2019</span>
+            </div>
+          </div>
+        </div>
+
+        <ul class="role-bullets">
+          <li>Joined as the 120th employee as an SDR and rose through five successive roles over less than three years, ultimately owning Verkada's entire demand generation and top-of-funnel function.</li>
+          <li>Recruited by the VP of Marketing to pioneer the Marketing Development Representative (MDR) program - a demand gen-focused evolution of the traditional BDR model - establishing the partnership between marketing and sales that became the engine for hypergrowth.</li>
+          <li>Hired and managed <strong>40+ MDRs</strong>, with each rep generating an average of
