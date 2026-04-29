@@ -301,6 +301,17 @@
     .footer-contact { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
     .footer-contact a { font-size: 12px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
     .footer-contact a:hover { color: var(--text-secondary); }
+    .footer-byline { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: center; padding: 0 0 18px; font-size: 11px; color: var(--text-muted); letter-spacing: 0.04em; text-transform: uppercase; }
+    .footer-byline a { color: var(--text-secondary); text-decoration: none; }
+    .footer-byline a:hover { color: var(--text-primary); }
+    .footer-byline .dot { color: rgba(255,255,255,0.18); }
+    .footer-nav { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; padding: 0 0 14px; }
+    .footer-nav a { font-size: 12px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--text-secondary); }
+    .footer-social { display: flex; gap: 14px; align-items: center; }
+    .footer-social a { width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--border); color: var(--text-muted); transition: all 0.2s; }
+    .footer-social a:hover { border-color: var(--border-hover); color: var(--text-secondary); }
+    .footer-social svg { width: 13px; height: 13px; }
     @media (max-width: 768px) {
       .projects-grid { grid-template-columns: 1fr; }
       .about-strip { grid-template-columns: 1fr; gap: 40px; }
@@ -323,8 +334,9 @@
         </a>
         <ul class="nav-links">
           <li><a href="#projects">Projects</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/press.html">Press</a></li>
+          <li><a href="/contact.html">Contact</a></li>
         </ul>
       </div>
     </nav>
@@ -398,6 +410,20 @@
     </section>
 
     <footer>
+      <div class="footer-byline">
+        <span>By <a href="/about.html" rel="author">Mike Cubberly</a></span>
+        <span class="dot">•</span>
+        <span>Published June 2024</span>
+        <span class="dot">•</span>
+        <span>Last updated <time datetime="2026-04-29">April 29, 2026</time></span>
+      </div>
+      <div class="footer-nav">
+        <a href="/about.html">About</a>
+        <a href="/press.html">Press</a>
+        <a href="/contact.html">Contact</a>
+        <a href="https://bottlerocketgrowth.com" target="_blank" rel="noopener">Bottle Rocket Growth</a>
+        <a href="https://bottlerocketracing.com" target="_blank" rel="noopener">Bottle Rocket Racing</a>
+      </div>
       <div class="footer-inner">
         <div class="footer-chicago">
           <div class="chicago-stars">
@@ -408,6 +434,10 @@
         <div class="footer-contact">
           <a href="tel:8473619186">847-361-9186</a>
           <a href="/cdn-cgi/l/email-protection#432e2a282603212c37372f26312c2028263724312c34372b6d202c2e"><span class="__cf_email__" data-cfemail="ea8783818faa88859e9e868f988589818f9e8d98859d9e82c4898587">[email&#160;protected]</span></a>
+        </div>
+        <div class="footer-social" aria-label="Mike Cubberly on social platforms">
+          <a href="https://www.linkedin.com/in/mikecubberly" target="_blank" rel="me noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="https://github.com/mikecubberly" target="_blank" rel="me noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55v-2.07C5.73 20.81 5.07 18.4 5.07 18.4c-.49-1.25-1.2-1.59-1.2-1.59-.98-.67.07-.66.07-.66 1.08.08 1.65 1.11 1.65 1.11.96 1.65 2.53 1.18 3.15.9.1-.7.38-1.18.69-1.45-2.4-.27-4.92-1.2-4.92-5.34 0-1.18.42-2.15 1.11-2.91-.11-.27-.48-1.37.1-2.86 0 0 .91-.29 2.97 1.11.86-.24 1.78-.36 2.7-.36s1.84.12 2.7.36c2.06-1.4 2.97-1.11 2.97-1.11.59 1.49.22 2.59.11 2.86.69.76 1.11 1.73 1.11 2.91 0 4.15-2.53 5.07-4.94 5.34.39.34.74 1 .74 2.02v2.99c0 .3.2.66.79.55C20.21 21.39 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg></a>
         </div>
       </div>
     </footer>

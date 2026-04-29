@@ -63,6 +63,9 @@ Modern SaaS platform reimagining how consumers and brokers navigate automotive l
 ## Key Pages
 
 - [Homepage](https://mikecubberly.com/): Overview of Mike's ventures and background
+- [About](https://mikecubberly.com/about.html): Long-form bio, career timeline, and ventures
+- [Press & Media Kit](https://mikecubberly.com/press.html): Boilerplate, quick facts, speaking topics, media contact
+- [Contact](https://mikecubberly.com/contact.html): Email, phone, LinkedIn, GitHub
 - [Bottle Rocket Growth](https://bottlerocketgrowth.com): GTM consultancy
 - [Bottle Rocket Racing](https://bottlerocketracing.com): Motorsports sponsorship
 - [leasr.io](https://leasr.io): Automotive leasing platform
