@@ -300,6 +300,7 @@ img {
   top: 13%;
   left: 50%;
   width: 91%;
+  height: auto;
   filter: saturate(0.85) contrast(1.06);
   transform: translateX(-50%) rotate(-2.5deg) scale(1.15);
 }
