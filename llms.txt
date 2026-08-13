@@ -1,70 +1,30 @@
 # Mike Cubberly
 
-> Mike Cubberly is a Chicago-based founder, builder, and GTM ecosystem architect. He is the founder of Bottle Rocket Growth, a LinkedIn outbound agency and go-to-market consultancy for B2B startups. He also founded Bottle Rocket Racing, a motorsports business development and sponsorship firm, and operates leasr.io, an automotive leasing platform.
+> Mike Cubberly is a Chicago-based founder and go-to-market operator. He builds outbound systems, revenue infrastructure, and companies.
 
-## About
+## Current work
 
-Mike Cubberly has spent over a decade building go-to-market systems from the ground up for B2B technology companies. He builds outbound systems, revenue infrastructure, and companies at the intersection of technology, growth, and speed.
+- Bottle Rocket Growth: B2B outbound and GTM systems
+- Bottle Rocket Racing: motorsports business development and sponsorship pipeline
+- leasr.io: automotive leasing platform
 
-- Location: Chicago, Illinois, United States
-- Role: Founder, GTM Architect, Operator, Builder
-- Active ventures: Bottle Rocket Growth, Bottle Rocket Racing, leasr.io
-- Community: Community Admin at RevGenius (60,000+ member B2B revenue community)
+## Background
 
-## Career
+Mike has more than a decade of experience across pipeline, customer success, community, partnerships, and revenue operations. His prior companies include Verkada, Primer, Glencoco, and RevGenius.
 
-Prior to launching Bottle Rocket Growth in 2024, Mike held roles at:
+## Location
 
-- **Verkada**: Built $100M+ quarterly pipeline as part of the GTM team.
-- **Glencoco**: Head of Customer Success and Community.
-- **Primer**: B2B Martech Account Executive.
-- **RevGenius**: Community building, growing membership to 50,000+ members. Continues as Community Admin.
-
-## Current Ventures
-
-### Bottle Rocket Growth (BRG)
-
-Chicago-based LinkedIn outbound agency and GTM consultancy for B2B startups. BRG runs AI-driven outbound campaigns using borrowed LinkedIn sender profiles, signal-based list building, and sequenced outreach via HeyReach. Three engagement tiers: Done-For-You ($3K/sender/month), Infrastructure-On-You ($1K/sender/month), and Lite Advisory ($500/month).
-
-- Website: https://bottlerocketgrowth.com
-
-### Bottle Rocket Racing
-
-Motorsports arm of Bottle Rocket. Partners with race teams, including NASCAR teams, to build the business development infrastructure that converts fan enthusiasm into lasting commercial sponsorship revenue. Services include CRM setup and management, outreach cadence design, prospect identification, playbook development, active prospect outreach, pipeline tracking, and sponsorship proposal development.
-
-- Website: https://bottlerocketracing.com
-
-### leasr.io
-
-Modern SaaS platform reimagining how consumers and brokers navigate automotive leasing. Transparent, intelligent, and built for the way people actually shop for cars.
-
-- Website: https://leasr.io
-
-## Areas of Expertise
-
-- Go-to-market strategy
-- LinkedIn outbound and outreach automation
-- B2B sales development and pipeline architecture
-- ICP (Ideal Customer Profile) definition
-- Signal-based prospecting
-- Revenue infrastructure design
-- AI-driven sales systems
-- Outbound automation tooling (HeyReach, Apollo, Clay)
-- GTM team building and community
+Chicago, Illinois, United States
 
 ## Contact
 
 - Email: mike@bottlerocketgrowth.com
 - Phone: 847-361-9186
 - LinkedIn: https://www.linkedin.com/in/mikecubberly
-- Location: Chicago, Illinois, United States
 
-## Key Pages
+## Primary pages
 
-- [Homepage](https://mikecubberly.com/): Overview of Mike's ventures and background
-- [About](https://mikecubberly.com/about.html): Long-form bio, career timeline, and ventures
-- [Press & Media Kit](https://mikecubberly.com/press.html): Boilerplate, quick facts, speaking topics, media contact
-- [Contact](https://mikecubberly.com/contact.html): Email, phone, LinkedIn, GitHub
-- [Bottle Rocket Growth](https://bottlerocketgrowth.com): GTM consultancy
-- [Bottle Rocket Racing](https://bottlerocketracing.com): Motorsports sponsorship
-- [leasr.io](https://leasr.io): Automotive leasing platform
+- Homepage: https://mikecubberly.com/
+- About: https://mikecubberly.com/about.html
+- Press: https://mikecubberly.com/press.html
+- Contact: https://mikecubberly.com/contact.html
