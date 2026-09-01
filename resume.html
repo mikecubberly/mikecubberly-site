@@ -482,36 +482,267 @@
   .role-bullets a { color: var(--accent); text-decoration: none; }
   .role-bullets a:hover { color: var(--accent-warm); }
 
-  .tools-category {
-    margin-bottom: 0.85rem;
+  /* INTERACTIVE TOOL UNIVERSE */
+  .tool-universe-section { margin-top: 0.2rem; }
+
+  .universe-intro {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.2rem;
+    margin: -0.35rem 0 0.9rem;
   }
 
-  .tools-cat-label {
-    font-size: 0.58rem;
+  .universe-intro p {
+    max-width: 470px;
+    color: var(--mid);
+    font-size: 0.78rem;
+    line-height: 1.65;
+  }
+
+  .universe-count {
+    flex: 0 0 auto;
+    color: var(--accent-warm);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+  }
+
+  .universe-count span {
+    display: block;
+    color: var(--light);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.54rem;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
+    text-align: right;
     text-transform: uppercase;
-    color: var(--sidebar-accent);
-    margin-bottom: 0.35rem;
   }
 
-  .tools-tags {
+  .universe-controls {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.22rem;
+    gap: 0.38rem;
+    margin-bottom: 0.65rem;
   }
 
-  .tool-tag {
-    display: inline-block;
-    font-size: 0.62rem;
-    font-weight: 400;
-    color: rgba(232,234,240,0.75);
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 3px;
-    padding: 0.15rem 0.42rem;
+  .universe-filter {
+    appearance: none;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    background: var(--white);
+    color: var(--mid);
+    cursor: pointer;
+    font: 500 0.61rem/1 'DM Sans', sans-serif;
+    letter-spacing: 0.04em;
+    padding: 0.48rem 0.72rem;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+
+  .universe-filter:hover,
+  .universe-filter:focus-visible,
+  .universe-filter.is-active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--white);
+    outline: none;
+  }
+
+  .tool-universe {
+    position: relative;
+    height: 720px;
+    overflow: hidden;
+    border: 1px solid rgba(201,137,58,0.24);
+    border-radius: 20px;
+    background:
+      radial-gradient(circle at 50% 48%, rgba(201,137,58,0.14), transparent 17%),
+      radial-gradient(circle at 18% 21%, rgba(66,153,225,0.16), transparent 20%),
+      radial-gradient(circle at 82% 78%, rgba(129,92,246,0.13), transparent 22%),
+      radial-gradient(circle at 78% 18%, rgba(44,190,166,0.1), transparent 17%),
+      #090c14;
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.42), 0 18px 45px rgba(15,17,23,0.12);
+    isolation: isolate;
+  }
+
+  .tool-universe::before,
+  .tool-universe::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .tool-universe::before {
+    opacity: 0.75;
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,0.9) 0 1px, transparent 1.2px),
+      radial-gradient(circle, rgba(201,137,58,0.8) 0 1px, transparent 1.3px),
+      radial-gradient(circle, rgba(129,196,255,0.75) 0 1px, transparent 1.2px);
+    background-position: 0 0, 33px 47px, 91px 19px;
+    background-size: 83px 89px, 127px 131px, 167px 173px;
+  }
+
+  .tool-universe::after {
+    background: radial-gradient(ellipse at center, transparent 48%, rgba(3,5,10,0.62) 100%);
+    z-index: 8;
+  }
+
+  .universe-orbit {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
+  .universe-orbit:nth-of-type(1) { width: 27%; height: 25%; }
+  .universe-orbit:nth-of-type(2) { width: 48%; height: 46%; border-color: rgba(201,137,58,0.16); }
+  .universe-orbit:nth-of-type(3) { width: 68%; height: 65%; }
+  .universe-orbit:nth-of-type(4) { width: 86%; height: 84%; border-color: rgba(94,188,255,0.13); }
+
+  .universe-links {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .universe-links line {
+    stroke: rgba(201,137,58,0.11);
+    stroke-width: 0.7;
+    transition: opacity 0.25s ease, stroke 0.25s ease;
+  }
+
+  .universe-core {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 5;
+    width: 112px;
+    height: 112px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(201,137,58,0.7);
+    border-radius: 50%;
+    color: var(--white);
+    background: radial-gradient(circle at 35% 30%, #364256, #151923 60%, #090b10 100%);
+    box-shadow: 0 0 22px rgba(201,137,58,0.35), 0 0 70px rgba(201,137,58,0.16);
+    text-align: center;
+    transform: translate(-50%, -50%);
+    animation: corePulse 4.8s ease-in-out infinite;
+  }
+
+  .universe-core strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
     letter-spacing: 0.02em;
-    line-height: 1.5;
+  }
+
+  .universe-core span {
+    margin-top: 0.2rem;
+    color: var(--sidebar-accent);
+    font-size: 0.48rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .universe-nodes { position: absolute; inset: 0; z-index: 4; }
+
+  .tool-node {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    max-width: 108px;
+    min-height: 21px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    appearance: none;
+    border: 1px solid color-mix(in srgb, var(--node-color) 55%, transparent);
+    border-radius: 999px;
+    background: rgba(8,11,18,0.84);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--node-color) 22%, transparent);
+    color: rgba(255,255,255,0.84);
+    cursor: pointer;
+    font: 500 0.52rem/1.15 'DM Sans', sans-serif;
+    letter-spacing: 0.01em;
+    padding: 0.29rem 0.48rem;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.25s ease, transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    white-space: nowrap;
+    animation: nodePulse var(--pulse-speed) ease-in-out var(--pulse-delay) infinite;
+  }
+
+  .tool-node::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    flex: 0 0 auto;
+    margin-right: 0.28rem;
+    border-radius: 50%;
+    background: var(--node-color);
+    box-shadow: 0 0 7px var(--node-color);
+  }
+
+  .tool-node:hover,
+  .tool-node:focus-visible,
+  .tool-node.is-selected {
+    z-index: 7;
+    border-color: var(--node-color);
+    box-shadow: 0 0 9px var(--node-color), 0 0 24px color-mix(in srgb, var(--node-color) 32%, transparent);
+    color: var(--white);
+    outline: none;
+    transform: translate(-50%, -50%) scale(1.13);
+  }
+
+  .tool-node.is-muted { opacity: 0.09; animation-play-state: paused; }
+  .tool-node[data-category="intelligence"] { --node-color: #d6a45d; }
+  .tool-node[data-category="data"] { --node-color: #55c9b3; }
+  .tool-node[data-category="automation"] { --node-color: #64aef5; }
+  .tool-node[data-category="infrastructure"] { --node-color: #a78bfa; }
+  .tool-node[data-category="api"] { --node-color: #ef7d79; }
+
+  .universe-detail {
+    position: absolute;
+    left: 50%;
+    bottom: 1rem;
+    z-index: 7;
+    width: calc(100% - 2rem);
+    min-height: 47px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 10px;
+    background: rgba(8,11,18,0.78);
+    color: rgba(232,234,240,0.68);
+    font-size: 0.64rem;
+    line-height: 1.45;
+    padding: 0.65rem 0.85rem;
+    text-align: center;
+    transform: translateX(-50%);
+    backdrop-filter: blur(10px);
+  }
+
+  .universe-detail strong { color: var(--white); font-weight: 600; }
+
+  @keyframes corePulse {
+    0%, 100% { box-shadow: 0 0 22px rgba(201,137,58,0.35), 0 0 70px rgba(201,137,58,0.16); }
+    50% { box-shadow: 0 0 32px rgba(201,137,58,0.55), 0 0 96px rgba(201,137,58,0.24); }
+  }
+
+  @keyframes nodePulse {
+    0%, 100% { filter: brightness(0.88); }
+    50% { filter: brightness(1.24); }
   }
 
   /* DOWNLOAD PDF BUTTON */
@@ -554,6 +785,14 @@
     .page { box-shadow: none; max-width: 100%; }
     .company-block { page-break-inside: avoid; }
     .download-btn { display: none !important; }
+    .universe-controls, .universe-orbit, .universe-links, .universe-core, .universe-detail { display: none !important; }
+    .tool-universe { height: auto; min-height: 0; padding: 1rem; background: #111622 !important; }
+    .universe-nodes { position: relative; display: flex; flex-wrap: wrap; gap: 0.3rem; }
+    .tool-node { position: static; transform: none !important; animation: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .universe-core, .tool-node { animation: none; }
   }
 
   @media (max-width: 740px) {
@@ -561,6 +800,33 @@
     .sidebar { padding: 2rem 1.6rem; min-width: 0; }
     .stat-grid { grid-template-columns: repeat(3, 1fr); }
     .main { padding: 2rem 1.6rem; min-width: 0; }
+    .universe-intro { align-items: flex-start; }
+    .tool-universe { height: 760px; }
+    .tool-node {
+      width: 11px;
+      height: 11px;
+      min-height: 0;
+      padding: 0;
+      border-radius: 50%;
+      font-size: 0;
+      white-space: nowrap;
+    }
+    .tool-node::before { width: 5px; height: 5px; margin: 0; }
+    .tool-node:hover,
+    .tool-node:focus-visible,
+    .tool-node.is-selected {
+      width: auto;
+      height: auto;
+      min-height: 22px;
+      max-width: 92px;
+      border-radius: 999px;
+      font-size: 0.48rem;
+      padding: 0.28rem 0.4rem;
+    }
+    .tool-node:hover::before,
+    .tool-node:focus-visible::before,
+    .tool-node.is-selected::before { margin-right: 0.25rem; }
+    .universe-core { width: 92px; height: 92px; }
   }
 </style>
 </head>
@@ -647,65 +913,6 @@
       <span class="skill-tag">Talent Placement</span>
       <span class="skill-tag">Sales Automation</span>
     </div>
-    <div class="sidebar-section">
-      <div class="sidebar-section-label">Tools &amp; Tech Stack</div>
-
-      <div class="tools-category">
-        <div class="tools-cat-label">AI &amp; Research</div>
-        <div class="tools-tags">
-          <span class="tool-tag">ChatGPT</span><span class="tool-tag">Claude</span><span class="tool-tag">Gemini</span><span class="tool-tag">Grok</span><span class="tool-tag">Perplexity</span><span class="tool-tag">Codex</span><span class="tool-tag">GenSpark</span><span class="tool-tag">NapkinAI</span>
-        </div>
-      </div>
-
-      <div class="tools-category">
-        <div class="tools-cat-label">Outbound &amp; Prospecting</div>
-        <div class="tools-tags">
-          <span class="tool-tag">Apollo.io</span><span class="tool-tag">HeyReach</span><span class="tool-tag">Instantly</span><span class="tool-tag">Outreach</span><span class="tool-tag">Clay</span><span class="tool-tag">GoLogin</span><span class="tool-tag">OrangeSlice</span><span class="tool-tag">Airscale</span><span class="tool-tag">IcyPeas</span><span class="tool-tag">Prospeo</span><span class="tool-tag">RB2B</span><span class="tool-tag">Sumble</span><span class="tool-tag">CompanyEnrich</span><span class="tool-tag">GojiBerry</span>
-        </div>
-      </div>
-
-      <div class="tools-category">
-        <div class="tools-cat-label">CRM &amp; Revenue Ops</div>
-        <div class="tools-tags">
-          <span class="tool-tag">HubSpot</span><span class="tool-tag">Salesforce</span><span class="tool-tag">Nutshell CRM</span><span class="tool-tag">Clarify</span><span class="tool-tag">Retool</span><span class="tool-tag">Looker</span>
-        </div>
-      </div>
-
-      <div class="tools-category">
-        <div class="tools-cat-label">Automation &amp; Ops</div>
-        <div class="tools-tags">
-          <span class="tool-tag">Zapier</span><span class="tool-tag">Make.com</span><span class="tool-tag">Airtable</span><span class="tool-tag">Visualping</span><span class="tool-tag">Monday</span><span class="tool-tag">Gusto</span><span class="tool-tag">Freckle</span><span class="tool-tag">SyftData</span><span class="tool-tag">Syft</span>
-        </div>
-      </div>
-
-      <div class="tools-category">
-        <div class="tools-cat-label">Build &amp; Deploy</div>
-        <div class="tools-tags">
-          <span class="tool-tag">Replit</span><span class="tool-tag">Framer</span><span class="tool-tag">Webflow</span><span class="tool-tag">Softr</span><span class="tool-tag">Cloudflare Pages</span><span class="tool-tag">GitHub</span><span class="tool-tag">Netlify</span><span class="tool-tag">Loveable</span>
-        </div>
-      </div>
-
-      <div class="tools-category">
-        <div class="tools-cat-label">APIs &amp; Integrations</div>
-        <div class="tools-tags">
-          <span class="tool-tag">OpenAI API</span><span class="tool-tag">Anthropic API</span><span class="tool-tag">Apollo API</span><span class="tool-tag">HeyReach API</span><span class="tool-tag">Slack API</span><span class="tool-tag">Cloudflare API</span><span class="tool-tag">Serper API</span><span class="tool-tag">Firecrawl API</span>
-        </div>
-      </div>
-
-      <div class="tools-category">
-        <div class="tools-cat-label">Comms &amp; Productivity</div>
-        <div class="tools-tags">
-          <span class="tool-tag">Slack</span><span class="tool-tag">Discord</span><span class="tool-tag">Loom</span><span class="tool-tag">Fathom</span><span class="tool-tag">Calendly</span><span class="tool-tag">Cal.com</span><span class="tool-tag">LunaCal</span><span class="tool-tag">Wispr Flow</span><span class="tool-tag">Yutori</span><span class="tool-tag">LinkedIn</span>
-        </div>
-      </div>
-
-      <div class="tools-category">
-        <div class="tools-cat-label">Design &amp; Data</div>
-        <div class="tools-tags">
-          <span class="tool-tag">Canva</span><span class="tool-tag">Google Sheets</span><span class="tool-tag">Google Drive</span><span class="tool-tag">Google Workspace</span>
-        </div>
-      </div>
-    </div>
   </aside>
 
   <!-- MAIN -->
@@ -722,6 +929,32 @@
       <p class="summary-text">
         Operator-founder and GTM professional with <strong>12+ years</strong> building and managing partner ecosystems, channel relationships, and revenue-driving alliances across high-growth SaaS environments. As founder of <strong>Bottle Rocket Growth</strong>, I built the company to <strong>$350K ARR</strong> and have since expanded into multiple operating arms - including GTM talent placement and motorsport partnerships. I lead GTM strategy for a <strong>70,000+ member community</strong> at RevGenius, serve as a <strong>GTM advisor to Airscale</strong>, and have a track record of growing into leadership at every organization I have joined. I thrive at the intersection of partner development, co-selling strategy, and ecosystem-building.
       </p>
+    </div>
+
+    <div class="section tool-universe-section" aria-labelledby="tool-universe-heading">
+      <div class="section-header"><h2 id="tool-universe-heading">GTM Systems Universe</h2></div>
+      <div class="universe-intro">
+        <p>A connected operating system for intelligence, data, orchestration, infrastructure, and direct API workflows. Select a constellation or explore an individual node.</p>
+        <div class="universe-count"><span id="universe-count-number">0</span><span>Connected systems</span></div>
+      </div>
+      <div class="universe-controls" role="group" aria-label="Filter tool universe">
+        <button class="universe-filter is-active" type="button" data-filter="all">Entire universe</button>
+        <button class="universe-filter" type="button" data-filter="intelligence">Intelligence</button>
+        <button class="universe-filter" type="button" data-filter="data">Data</button>
+        <button class="universe-filter" type="button" data-filter="automation">Orchestration</button>
+        <button class="universe-filter" type="button" data-filter="infrastructure">Infrastructure</button>
+        <button class="universe-filter" type="button" data-filter="api">APIs</button>
+      </div>
+      <div class="tool-universe" id="tool-universe">
+        <div class="universe-orbit" aria-hidden="true"></div>
+        <div class="universe-orbit" aria-hidden="true"></div>
+        <div class="universe-orbit" aria-hidden="true"></div>
+        <div class="universe-orbit" aria-hidden="true"></div>
+        <svg class="universe-links" id="universe-links" viewBox="0 0 1000 720" preserveAspectRatio="none" aria-hidden="true"></svg>
+        <div class="universe-core" aria-hidden="true"><strong>BRG Stack</strong><span>One system</span></div>
+        <div class="universe-nodes" id="universe-nodes"></div>
+        <div class="universe-detail" id="universe-detail" aria-live="polite">Hover, focus, or tap a node to see its role in the system.</div>
+      </div>
     </div>
 
     <!-- EXPERIENCE -->
@@ -925,5 +1158,156 @@
 
   </main>
 </div>
+<script>
+  const toolUniverse = [
+    { name: 'Cloudflare', category: 'infrastructure', detail: 'Edge delivery, DNS, application security, Pages deployments, and serverless infrastructure.' },
+    { name: 'GitHub', category: 'infrastructure', detail: 'Source control, production release workflows, and the operating record behind deployed BRG systems.' },
+    { name: 'Clay', category: 'data', detail: 'Multi-provider enrichment, research waterfalls, scoring logic, and structured outbound data.' },
+    { name: 'HeyReach', category: 'automation', detail: 'Multi-sender LinkedIn campaign infrastructure, sequencing, suppression, and lead-state operations.' },
+    { name: 'Apollo.io', category: 'data', detail: 'Company and people discovery, enrichment, qualification, and outbound list development.' },
+    { name: 'OpenAI', category: 'intelligence', detail: 'Reasoning, classification, extraction, research support, and application intelligence.' },
+    { name: 'Anthropic', category: 'intelligence', detail: 'Long-context reasoning and generation inside BRG proposal and audit workflows.' },
+    { name: 'HubSpot', category: 'automation', detail: 'CRM architecture, account data, suppression logic, meetings, and revenue operations.' },
+
+    { name: 'Codex', category: 'intelligence', detail: 'Agentic implementation, research operations, automation, testing, and deployment.' },
+    { name: 'FullEnrich', category: 'data', detail: 'Multi-source work-email and phone enrichment with confidence-aware result handling.' },
+    { name: 'Resend', category: 'automation', detail: 'Transactional email delivery for BRG-built client systems and operational workflows.' },
+    { name: 'OpenAI API', category: 'api', detail: 'Direct model access for structured extraction, verification, classification, and application features.' },
+    { name: 'QuickEnrich', category: 'data', detail: 'Contact discovery and enrichment used in controlled, credit-capped research workflows.' },
+    { name: 'Retool', category: 'automation', detail: 'Internal operational interfaces and data-backed workflow tooling.' },
+    { name: 'Serper', category: 'data', detail: 'Programmatic search discovery for evidence-led research and contact-finding systems.' },
+    { name: 'Cloudflare API', category: 'api', detail: 'Direct deployment, project, DNS, and infrastructure operations across BRG properties.' },
+
+    { name: 'Gemini', category: 'intelligence', detail: 'Multimodal reasoning, research, and comparative model workflows.' },
+    { name: 'Firecrawl', category: 'data', detail: 'Structured website extraction and page discovery for research applications.' },
+    { name: 'Signaliz', category: 'data', detail: 'Signal-led company intelligence and API-driven sourcing workflows.' },
+    { name: 'Anthropic API', category: 'api', detail: 'Direct Claude integration for proposal generation, editing, audits, and structured reasoning.' },
+    { name: 'GetLeads.io', category: 'data', detail: 'Direct lead-source coverage for list building and contact discovery.' },
+    { name: 'GoLogin', category: 'infrastructure', detail: 'Isolated browser-profile infrastructure for managed sender and client operations.' },
+    { name: 'Salesforce', category: 'automation', detail: 'Enterprise CRM, pipeline architecture, account management, and reporting.' },
+    { name: 'Apollo API', category: 'api', detail: 'Programmatic people and company search, matching, and enrichment.' },
+    { name: 'Perplexity', category: 'intelligence', detail: 'Source-oriented research and rapid market synthesis.' },
+    { name: 'Enrich.so', category: 'data', detail: 'Direct enrichment coverage for validating and filling prospect records.' },
+    { name: 'Apify', category: 'data', detail: 'Actor-based web extraction and repeatable data collection.' },
+    { name: 'HeyReach API', category: 'api', detail: 'Programmatic campaign, lead, sender, conversation, and suppression operations.' },
+
+    { name: 'Grok', category: 'intelligence', detail: 'Real-time research and comparative model analysis.' },
+    { name: 'DataForSEO', category: 'data', detail: 'Structured search, keyword, SERP, and market-intelligence data.' },
+    { name: 'HarvestAPI.io', category: 'data', detail: 'LinkedIn-oriented lead search and profile-data coverage.' },
+    { name: 'Slack API', category: 'api', detail: 'Operational notifications, private workflow channels, and client-system synchronization.' },
+    { name: 'CompanyEnrich', category: 'data', detail: 'Company-level enrichment and structured firmographic discovery.' },
+    { name: 'SyftData', category: 'automation', detail: 'Data operations and workflow support across prospecting systems.' },
+    { name: 'IcyPeas', category: 'data', detail: 'Work-email discovery inside multi-source enrichment workflows.' },
+    { name: 'FullEnrich API', category: 'api', detail: 'Asynchronous email and phone enrichment with controlled fields and confidence readback.' },
+    { name: 'Google Books', category: 'data', detail: 'Publication metadata used in author and new-book qualification workflows.' },
+    { name: 'Prospeo', category: 'data', detail: 'Email discovery and validation for qualified prospect records.' },
+    { name: 'RB2B', category: 'data', detail: 'Website visitor identification and account-level demand signals.' },
+    { name: 'QuickEnrich API', category: 'api', detail: 'Direct contact discovery with explicit credit and data-sharing controls.' },
+    { name: 'Sumble', category: 'data', detail: 'Company and market intelligence for account discovery.' },
+    { name: 'Twilio', category: 'automation', detail: 'Programmable communications inside BRG-built operational systems.' },
+    { name: 'OrangeSlice', category: 'data', detail: 'Prospecting and data operations within the outbound stack.' },
+    { name: 'Serper API', category: 'api', detail: 'Direct search-result access for research and discovery applications.' },
+
+    { name: 'GojiBerry', category: 'data', detail: 'Prospect-data enrichment and sourcing support.' },
+    { name: 'Baselayer', category: 'data', detail: 'Company and founder sourcing for evidence-led prospecting programs.' },
+    { name: 'Firecrawl API', category: 'api', detail: 'Direct crawling and page extraction for structured research systems.' },
+    { name: 'GetLeads.io API', category: 'api', detail: 'Direct lead-source access for reviewable list-building workflows.' },
+    { name: 'Enrich.so API', category: 'api', detail: 'Direct prospect enrichment for validation and missing-field coverage.' },
+    { name: 'Signaliz API', category: 'api', detail: 'Direct signal intelligence and company-data access.' },
+    { name: 'HarvestAPI.io API', category: 'api', detail: 'Direct LinkedIn lead-search and profile-data endpoints.' },
+    { name: 'Resend API', category: 'api', detail: 'Direct transactional email delivery for application workflows.' },
+    { name: 'Twilio API', category: 'api', detail: 'Direct programmable messaging and communication services.' },
+    { name: 'HubSpot API', category: 'api', detail: 'Direct CRM access for company, contact, scheduling, and suppression workflows.' },
+    { name: 'Google Books API', category: 'api', detail: 'Direct publication and author metadata for book-market research.' },
+    { name: 'Treg API', category: 'api', detail: 'Provider routing and coverage comparison across enrichment and market-data sources.' },
+    { name: 'Apify API', category: 'api', detail: 'Direct actor execution and structured dataset retrieval.' },
+    { name: 'DataForSEO API', category: 'api', detail: 'Direct SERP, keyword, and competitive-search intelligence.' }
+  ];
+
+  const categoryLabels = {
+    intelligence: 'Intelligence',
+    data: 'Data and discovery',
+    automation: 'Orchestration',
+    infrastructure: 'Infrastructure',
+    api: 'Direct API'
+  };
+
+  const universeNodes = document.getElementById('universe-nodes');
+  const universeLinks = document.getElementById('universe-links');
+  const universeDetail = document.getElementById('universe-detail');
+  const universeCount = document.getElementById('universe-count-number');
+  const ringPlan = [8, 13, 17, 20];
+  const ringGeometry = [
+    { x: 13, y: 12, offset: -90 },
+    { x: 23, y: 22, offset: -72 },
+    { x: 33, y: 32, offset: -82 },
+    { x: 41, y: 42, offset: -88 }
+  ];
+
+  let ring = 0;
+  let ringIndex = 0;
+
+  toolUniverse.forEach((tool, index) => {
+    while (ringIndex >= ringPlan[ring] && ring < ringPlan.length - 1) {
+      ring += 1;
+      ringIndex = 0;
+    }
+
+    const geometry = ringGeometry[ring];
+    const angle = geometry.offset + (360 / ringPlan[ring]) * ringIndex;
+    const radians = angle * Math.PI / 180;
+    let x = 50 + Math.cos(radians) * geometry.x;
+    let y = 50 + Math.sin(radians) * geometry.y;
+    if (tool.name === 'OrangeSlice') y -= 2.6;
+    if (tool.name === 'Serper API') y += 3.2;
+    const node = document.createElement('button');
+    node.type = 'button';
+    node.className = 'tool-node';
+    node.dataset.category = tool.category;
+    node.dataset.index = String(index);
+    node.style.setProperty('--x', `${x.toFixed(2)}%`);
+    node.style.setProperty('--y', `${y.toFixed(2)}%`);
+    node.style.setProperty('--pulse-speed', `${(3.4 + (index % 7) * 0.42).toFixed(2)}s`);
+    node.style.setProperty('--pulse-delay', `${(-index * 0.19).toFixed(2)}s`);
+    node.textContent = tool.name;
+    node.setAttribute('aria-label', `${tool.name}. ${categoryLabels[tool.category]}. ${tool.detail}`);
+    universeNodes.appendChild(node);
+
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', '500');
+    line.setAttribute('y1', '360');
+    line.setAttribute('x2', (x * 10).toFixed(1));
+    line.setAttribute('y2', (y * 7.2).toFixed(1));
+    line.dataset.category = tool.category;
+    universeLinks.appendChild(line);
+
+    const showDetail = () => {
+      document.querySelectorAll('.tool-node.is-selected').forEach((item) => item.classList.remove('is-selected'));
+      node.classList.add('is-selected');
+      universeDetail.innerHTML = `<span><strong>${tool.name}</strong> · ${categoryLabels[tool.category]} · ${tool.detail}</span>`;
+    };
+
+    node.addEventListener('mouseenter', showDetail);
+    node.addEventListener('focus', showDetail);
+    node.addEventListener('click', showDetail);
+    ringIndex += 1;
+  });
+
+  universeCount.textContent = String(toolUniverse.length);
+
+  document.querySelectorAll('.universe-filter').forEach((button) => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+      document.querySelectorAll('.universe-filter').forEach((item) => item.classList.toggle('is-active', item === button));
+      document.querySelectorAll('.tool-node').forEach((node) => node.classList.toggle('is-muted', filter !== 'all' && node.dataset.category !== filter));
+      document.querySelectorAll('.universe-links line').forEach((line) => {
+        line.style.opacity = filter === 'all' || line.dataset.category === filter ? '1' : '0.04';
+      });
+      universeDetail.innerHTML = filter === 'all'
+        ? 'Hover, focus, or tap a node to see its role in the system.'
+        : `<span><strong>${categoryLabels[filter]}</strong> constellation selected.</span>`;
+    });
+  });
+</script>
 </body>
 </html>
