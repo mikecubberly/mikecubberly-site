@@ -558,9 +558,9 @@
 
   @media (max-width: 740px) {
     .page { grid-template-columns: 1fr; }
-    .sidebar { padding: 2rem 1.6rem; }
+    .sidebar { padding: 2rem 1.6rem; min-width: 0; }
     .stat-grid { grid-template-columns: repeat(3, 1fr); }
-    .main { padding: 2rem 1.6rem; }
+    .main { padding: 2rem 1.6rem; min-width: 0; }
   }
 </style>
 </head>
@@ -653,14 +653,14 @@
       <div class="tools-category">
         <div class="tools-cat-label">AI &amp; Research</div>
         <div class="tools-tags">
-          <span class="tool-tag">ChatGPT</span><span class="tool-tag">Claude</span><span class="tool-tag">Gemini</span><span class="tool-tag">Grok</span><span class="tool-tag">Perplexity</span><span class="tool-tag">GenSpark</span><span class="tool-tag">NapkinAI</span>
+          <span class="tool-tag">ChatGPT</span><span class="tool-tag">Claude</span><span class="tool-tag">Gemini</span><span class="tool-tag">Grok</span><span class="tool-tag">Perplexity</span><span class="tool-tag">Codex</span><span class="tool-tag">GenSpark</span><span class="tool-tag">NapkinAI</span>
         </div>
       </div>
 
       <div class="tools-category">
         <div class="tools-cat-label">Outbound &amp; Prospecting</div>
         <div class="tools-tags">
-          <span class="tool-tag">Apollo.io</span><span class="tool-tag">HeyReach</span><span class="tool-tag">Instantly</span><span class="tool-tag">Outreach</span><span class="tool-tag">Clay</span><span class="tool-tag">OrangeSlice</span><span class="tool-tag">Airscale</span><span class="tool-tag">IcyPeas</span><span class="tool-tag">Prospeo</span><span class="tool-tag">RB2B</span><span class="tool-tag">Sumble</span><span class="tool-tag">CompanyEnrich</span><span class="tool-tag">GojiBerry</span>
+          <span class="tool-tag">Apollo.io</span><span class="tool-tag">HeyReach</span><span class="tool-tag">Instantly</span><span class="tool-tag">Outreach</span><span class="tool-tag">Clay</span><span class="tool-tag">GoLogin</span><span class="tool-tag">OrangeSlice</span><span class="tool-tag">Airscale</span><span class="tool-tag">IcyPeas</span><span class="tool-tag">Prospeo</span><span class="tool-tag">RB2B</span><span class="tool-tag">Sumble</span><span class="tool-tag">CompanyEnrich</span><span class="tool-tag">GojiBerry</span>
         </div>
       </div>
 
@@ -674,28 +674,35 @@
       <div class="tools-category">
         <div class="tools-cat-label">Automation &amp; Ops</div>
         <div class="tools-tags">
-          <span class="tool-tag">Zapier</span><span class="tool-tag">Make.com</span><span class="tool-tag">Airtable</span><span class="tool-tag">Monday</span><span class="tool-tag">Gusto</span><span class="tool-tag">Freckle</span><span class="tool-tag">SyftData</span><span class="tool-tag">Syft</span>
+          <span class="tool-tag">Zapier</span><span class="tool-tag">Make.com</span><span class="tool-tag">Airtable</span><span class="tool-tag">Visualping</span><span class="tool-tag">Monday</span><span class="tool-tag">Gusto</span><span class="tool-tag">Freckle</span><span class="tool-tag">SyftData</span><span class="tool-tag">Syft</span>
         </div>
       </div>
 
       <div class="tools-category">
         <div class="tools-cat-label">Build &amp; Deploy</div>
         <div class="tools-tags">
-          <span class="tool-tag">Replit</span><span class="tool-tag">Framer</span><span class="tool-tag">Webflow</span><span class="tool-tag">Softr</span><span class="tool-tag">Netlify</span><span class="tool-tag">Loveable</span>
+          <span class="tool-tag">Replit</span><span class="tool-tag">Framer</span><span class="tool-tag">Webflow</span><span class="tool-tag">Softr</span><span class="tool-tag">Cloudflare Pages</span><span class="tool-tag">GitHub</span><span class="tool-tag">Netlify</span><span class="tool-tag">Loveable</span>
+        </div>
+      </div>
+
+      <div class="tools-category">
+        <div class="tools-cat-label">APIs &amp; Integrations</div>
+        <div class="tools-tags">
+          <span class="tool-tag">OpenAI API</span><span class="tool-tag">Anthropic API</span><span class="tool-tag">Apollo API</span><span class="tool-tag">HeyReach API</span><span class="tool-tag">Slack API</span><span class="tool-tag">Cloudflare API</span><span class="tool-tag">Serper API</span><span class="tool-tag">Firecrawl API</span>
         </div>
       </div>
 
       <div class="tools-category">
         <div class="tools-cat-label">Comms &amp; Productivity</div>
         <div class="tools-tags">
-          <span class="tool-tag">Slack</span><span class="tool-tag">Discord</span><span class="tool-tag">Loom</span><span class="tool-tag">Fathom</span><span class="tool-tag">Calendly</span><span class="tool-tag">LunaCal</span><span class="tool-tag">Wispr Flow</span><span class="tool-tag">Yutori</span><span class="tool-tag">LinkedIn</span>
+          <span class="tool-tag">Slack</span><span class="tool-tag">Discord</span><span class="tool-tag">Loom</span><span class="tool-tag">Fathom</span><span class="tool-tag">Calendly</span><span class="tool-tag">Cal.com</span><span class="tool-tag">LunaCal</span><span class="tool-tag">Wispr Flow</span><span class="tool-tag">Yutori</span><span class="tool-tag">LinkedIn</span>
         </div>
       </div>
 
       <div class="tools-category">
         <div class="tools-cat-label">Design &amp; Data</div>
         <div class="tools-tags">
-          <span class="tool-tag">Canva</span><span class="tool-tag">Google Sheets</span><span class="tool-tag">Google Suite</span>
+          <span class="tool-tag">Canva</span><span class="tool-tag">Google Sheets</span><span class="tool-tag">Google Drive</span><span class="tool-tag">Google Workspace</span>
         </div>
       </div>
     </div>
