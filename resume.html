@@ -552,15 +552,10 @@
     position: relative;
     height: 720px;
     overflow: hidden;
-    border: 1px solid rgba(201,137,58,0.24);
+    border: 0;
     border-radius: 20px;
-    background:
-      radial-gradient(circle at 50% 48%, rgba(201,137,58,0.14), transparent 17%),
-      radial-gradient(circle at 18% 21%, rgba(66,153,225,0.16), transparent 20%),
-      radial-gradient(circle at 82% 78%, rgba(129,92,246,0.13), transparent 22%),
-      radial-gradient(circle at 78% 18%, rgba(44,190,166,0.1), transparent 17%),
-      #090c14;
-    box-shadow: inset 0 0 60px rgba(0,0,0,0.42), 0 18px 45px rgba(15,17,23,0.12);
+    background: transparent;
+    box-shadow: none;
     isolation: isolate;
   }
 
@@ -573,17 +568,17 @@
   }
 
   .tool-universe::before {
-    opacity: 0.75;
+    opacity: 0.42;
     background-image:
-      radial-gradient(circle, rgba(255,255,255,0.9) 0 1px, transparent 1.2px),
-      radial-gradient(circle, rgba(201,137,58,0.8) 0 1px, transparent 1.3px),
-      radial-gradient(circle, rgba(129,196,255,0.75) 0 1px, transparent 1.2px);
+      radial-gradient(circle, rgba(15,17,23,0.38) 0 1px, transparent 1.2px),
+      radial-gradient(circle, rgba(201,137,58,0.5) 0 1px, transparent 1.3px),
+      radial-gradient(circle, rgba(26,74,107,0.36) 0 1px, transparent 1.2px);
     background-position: 0 0, 33px 47px, 91px 19px;
     background-size: 83px 89px, 127px 131px, 167px 173px;
   }
 
   .tool-universe::after {
-    background: radial-gradient(ellipse at center, transparent 48%, rgba(3,5,10,0.62) 100%);
+    background: radial-gradient(ellipse at center, rgba(201,137,58,0.07), transparent 42%);
     z-index: 8;
   }
 
@@ -591,7 +586,7 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(15,17,23,0.11);
     border-radius: 50%;
     pointer-events: none;
     transform: translate(-50%, -50%);
@@ -599,9 +594,9 @@
   }
 
   .universe-orbit:nth-of-type(1) { width: 27%; height: 25%; }
-  .universe-orbit:nth-of-type(2) { width: 48%; height: 46%; border-color: rgba(201,137,58,0.16); }
+  .universe-orbit:nth-of-type(2) { width: 48%; height: 46%; border-color: rgba(201,137,58,0.22); }
   .universe-orbit:nth-of-type(3) { width: 68%; height: 65%; }
-  .universe-orbit:nth-of-type(4) { width: 86%; height: 84%; border-color: rgba(94,188,255,0.13); }
+  .universe-orbit:nth-of-type(4) { width: 86%; height: 84%; border-color: rgba(26,74,107,0.14); }
 
   .universe-links {
     position: absolute;
@@ -613,7 +608,7 @@
   }
 
   .universe-links line {
-    stroke: rgba(201,137,58,0.11);
+    stroke: rgba(15,17,23,0.07);
     stroke-width: 0.7;
     transition: opacity 0.25s ease, stroke 0.25s ease;
   }
@@ -629,30 +624,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(201,137,58,0.7);
+    border: 0;
     border-radius: 50%;
-    color: var(--white);
-    background: radial-gradient(circle at 35% 30%, #364256, #151923 60%, #090b10 100%);
-    box-shadow: 0 0 22px rgba(201,137,58,0.35), 0 0 70px rgba(201,137,58,0.16);
+    background: transparent;
+    box-shadow: 0 0 28px rgba(201,137,58,0.24), 0 0 74px rgba(201,137,58,0.13);
     text-align: center;
     transform: translate(-50%, -50%);
     animation: corePulse 4.8s ease-in-out infinite;
   }
 
-  .universe-core strong {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem;
-    letter-spacing: 0.02em;
-  }
-
-  .universe-core span {
-    margin-top: 0.2rem;
-    color: var(--sidebar-accent);
-    font-size: 0.48rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
+  .universe-core img { width: 86px; height: 86px; object-fit: contain; }
 
   .universe-nodes { position: absolute; inset: 0; z-index: 4; }
 
@@ -660,38 +641,25 @@
     position: absolute;
     left: var(--x);
     top: var(--y);
-    max-width: 108px;
-    min-height: 21px;
+    width: 38px;
+    height: 38px;
+    min-height: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     appearance: none;
-    border: 1px solid color-mix(in srgb, var(--node-color) 55%, transparent);
-    border-radius: 999px;
-    background: rgba(8,11,18,0.84);
-    box-shadow: 0 0 10px color-mix(in srgb, var(--node-color) 22%, transparent);
-    color: rgba(255,255,255,0.84);
+    border: 1px solid rgba(15,17,23,0.08);
+    border-radius: 50%;
+    background: rgba(255,255,255,0.88);
+    box-shadow: 0 3px 11px rgba(15,17,23,0.1), 0 0 12px color-mix(in srgb, var(--node-color) 13%, transparent);
     cursor: pointer;
-    font: 500 0.52rem/1.15 'DM Sans', sans-serif;
-    letter-spacing: 0.01em;
-    padding: 0.29rem 0.48rem;
-    text-align: center;
+    padding: 0.45rem;
     transform: translate(-50%, -50%);
     transition: opacity 0.25s ease, transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-    white-space: nowrap;
     animation: nodePulse var(--pulse-speed) ease-in-out var(--pulse-delay) infinite;
   }
 
-  .tool-node::before {
-    content: '';
-    width: 4px;
-    height: 4px;
-    flex: 0 0 auto;
-    margin-right: 0.28rem;
-    border-radius: 50%;
-    background: var(--node-color);
-    box-shadow: 0 0 7px var(--node-color);
-  }
+  .tool-node img { width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
 
   .tool-node:hover,
   .tool-node:focus-visible,
@@ -699,9 +667,8 @@
     z-index: 7;
     border-color: var(--node-color);
     box-shadow: 0 0 9px var(--node-color), 0 0 24px color-mix(in srgb, var(--node-color) 32%, transparent);
-    color: var(--white);
     outline: none;
-    transform: translate(-50%, -50%) scale(1.13);
+    transform: translate(-50%, -50%) scale(1.22);
   }
 
   .tool-node.is-muted { opacity: 0.09; animation-play-state: paused; }
@@ -711,29 +678,25 @@
   .tool-node[data-category="infrastructure"] { --node-color: #a78bfa; }
   .tool-node[data-category="api"] { --node-color: #ef7d79; }
 
-  .universe-detail {
+  .universe-fineprint {
     position: absolute;
     left: 50%;
     bottom: 1rem;
     z-index: 7;
     width: calc(100% - 2rem);
-    min-height: 47px;
+    min-height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255,255,255,0.09);
-    border-radius: 10px;
-    background: rgba(8,11,18,0.78);
-    color: rgba(232,234,240,0.68);
-    font-size: 0.64rem;
+    border: 0;
+    background: transparent;
+    color: var(--light);
+    font-size: 0.62rem;
     line-height: 1.45;
     padding: 0.65rem 0.85rem;
     text-align: center;
     transform: translateX(-50%);
-    backdrop-filter: blur(10px);
   }
-
-  .universe-detail strong { color: var(--white); font-weight: 600; }
 
   @keyframes corePulse {
     0%, 100% { box-shadow: 0 0 22px rgba(201,137,58,0.35), 0 0 70px rgba(201,137,58,0.16); }
@@ -785,8 +748,8 @@
     .page { box-shadow: none; max-width: 100%; }
     .company-block { page-break-inside: avoid; }
     .download-btn { display: none !important; }
-    .universe-controls, .universe-orbit, .universe-links, .universe-core, .universe-detail { display: none !important; }
-    .tool-universe { height: auto; min-height: 0; padding: 1rem; background: #111622 !important; }
+    .universe-controls, .universe-orbit, .universe-links, .universe-core, .universe-fineprint { display: none !important; }
+    .tool-universe { height: auto; min-height: 0; padding: 1rem; background: transparent !important; }
     .universe-nodes { position: relative; display: flex; flex-wrap: wrap; gap: 0.3rem; }
     .tool-node { position: static; transform: none !important; animation: none; }
   }
@@ -803,30 +766,23 @@
     .universe-intro { align-items: flex-start; }
     .tool-universe { height: 760px; }
     .tool-node {
-      width: 11px;
-      height: 11px;
+      width: 25px;
+      height: 25px;
       min-height: 0;
       padding: 0;
       border-radius: 50%;
-      font-size: 0;
-      white-space: nowrap;
+      padding: 0.28rem;
     }
-    .tool-node::before { width: 5px; height: 5px; margin: 0; }
     .tool-node:hover,
     .tool-node:focus-visible,
     .tool-node.is-selected {
-      width: auto;
-      height: auto;
-      min-height: 22px;
-      max-width: 92px;
-      border-radius: 999px;
-      font-size: 0.48rem;
-      padding: 0.28rem 0.4rem;
+      width: 31px;
+      height: 31px;
+      border-radius: 50%;
+      padding: 0.32rem;
     }
-    .tool-node:hover::before,
-    .tool-node:focus-visible::before,
-    .tool-node.is-selected::before { margin-right: 0.25rem; }
     .universe-core { width: 92px; height: 92px; }
+    .universe-core img { width: 72px; height: 72px; }
   }
 </style>
 </head>
@@ -951,9 +907,9 @@
         <div class="universe-orbit" aria-hidden="true"></div>
         <div class="universe-orbit" aria-hidden="true"></div>
         <svg class="universe-links" id="universe-links" viewBox="0 0 1000 720" preserveAspectRatio="none" aria-hidden="true"></svg>
-        <div class="universe-core" aria-hidden="true"><strong>BRG Stack</strong><span>One system</span></div>
+        <div class="universe-core" aria-hidden="true"><img src="brg-logo.png" alt=""></div>
         <div class="universe-nodes" id="universe-nodes"></div>
-        <div class="universe-detail" id="universe-detail" aria-live="polite">Hover, focus, or tap a node to see its role in the system.</div>
+        <div class="universe-fineprint">These are just some of the tools I use. I am constantly building out my stack based on each client's needs.</div>
       </div>
     </div>
 
@@ -1204,7 +1160,6 @@
     { name: 'RB2B', category: 'data', detail: 'Website visitor identification and account-level demand signals.' },
     { name: 'QuickEnrich API', category: 'api', detail: 'Direct contact discovery with explicit credit and data-sharing controls.' },
     { name: 'Sumble', category: 'data', detail: 'Company and market intelligence for account discovery.' },
-    { name: 'Twilio', category: 'automation', detail: 'Programmable communications inside BRG-built operational systems.' },
     { name: 'OrangeSlice', category: 'data', detail: 'Prospecting and data operations within the outbound stack.' },
     { name: 'Serper API', category: 'api', detail: 'Direct search-result access for research and discovery applications.' },
 
@@ -1216,7 +1171,6 @@
     { name: 'Signaliz API', category: 'api', detail: 'Direct signal intelligence and company-data access.' },
     { name: 'HarvestAPI.io API', category: 'api', detail: 'Direct LinkedIn lead-search and profile-data endpoints.' },
     { name: 'Resend API', category: 'api', detail: 'Direct transactional email delivery for application workflows.' },
-    { name: 'Twilio API', category: 'api', detail: 'Direct programmable messaging and communication services.' },
     { name: 'HubSpot API', category: 'api', detail: 'Direct CRM access for company, contact, scheduling, and suppression workflows.' },
     { name: 'Google Books API', category: 'api', detail: 'Direct publication and author metadata for book-market research.' },
     { name: 'Treg API', category: 'api', detail: 'Provider routing and coverage comparison across enrichment and market-data sources.' },
@@ -1232,11 +1186,59 @@
     api: 'Direct API'
   };
 
+  const logoDomains = {
+    'Cloudflare': 'cloudflare.com',
+    'GitHub': 'github.com',
+    'Clay': 'clay.com',
+    'HeyReach': 'heyreach.io',
+    'Apollo.io': 'apollo.io',
+    'Apollo': 'apollo.io',
+    'OpenAI': 'openai.com',
+    'Anthropic': 'anthropic.com',
+    'HubSpot': 'hubspot.com',
+    'Codex': 'openai.com',
+    'FullEnrich': 'fullenrich.com',
+    'Resend': 'resend.com',
+    'QuickEnrich': 'quickenrich.com',
+    'Retool': 'retool.com',
+    'Serper': 'serper.dev',
+    'Gemini': 'gemini.google.com',
+    'Firecrawl': 'firecrawl.dev',
+    'Signaliz': 'signaliz.com',
+    'GetLeads.io': 'getleads.io',
+    'GoLogin': 'gologin.com',
+    'Salesforce': 'salesforce.com',
+    'Perplexity': 'perplexity.ai',
+    'Enrich.so': 'enrich.so',
+    'Apify': 'apify.com',
+    'Grok': 'x.ai',
+    'DataForSEO': 'dataforseo.com',
+    'HarvestAPI.io': 'harvestapi.io',
+    'Slack': 'slack.com',
+    'CompanyEnrich': 'companyenrich.com',
+    'SyftData': 'syftdata.com',
+    'IcyPeas': 'icypeas.com',
+    'Google Books': 'books.google.com',
+    'Prospeo': 'prospeo.io',
+    'RB2B': 'rb2b.com',
+    'Sumble': 'sumble.com',
+    'OrangeSlice': 'orangeslice.ai',
+    'GojiBerry': 'gojiberry.ai',
+    'Baselayer': 'baselayer.io',
+    'Treg': 'treg.to'
+  };
+
+  const providerName = (name) => name.replace(/ API$/, '');
+  const logoUrl = (name) => {
+    const provider = providerName(name);
+    const domain = logoDomains[provider] || `${provider.toLowerCase().replace(/[^a-z0-9]+/g, '')}.com`;
+    return `https://www.google.com/s2/favicons?domain_url=https://${domain}&sz=128`;
+  };
+
   const universeNodes = document.getElementById('universe-nodes');
   const universeLinks = document.getElementById('universe-links');
-  const universeDetail = document.getElementById('universe-detail');
   const universeCount = document.getElementById('universe-count-number');
-  const ringPlan = [8, 13, 17, 20];
+  const ringPlan = [8, 13, 17, 18];
   const ringGeometry = [
     { x: 13, y: 12, offset: -90 },
     { x: 23, y: 22, offset: -72 },
@@ -1269,8 +1271,13 @@
     node.style.setProperty('--y', `${y.toFixed(2)}%`);
     node.style.setProperty('--pulse-speed', `${(3.4 + (index % 7) * 0.42).toFixed(2)}s`);
     node.style.setProperty('--pulse-delay', `${(-index * 0.19).toFixed(2)}s`);
-    node.textContent = tool.name;
     node.setAttribute('aria-label', `${tool.name}. ${categoryLabels[tool.category]}. ${tool.detail}`);
+    node.title = `${tool.name}: ${tool.detail}`;
+    const logo = document.createElement('img');
+    logo.src = logoUrl(tool.name);
+    logo.alt = '';
+    logo.referrerPolicy = 'no-referrer';
+    node.appendChild(logo);
     universeNodes.appendChild(node);
 
     const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -1284,7 +1291,6 @@
     const showDetail = () => {
       document.querySelectorAll('.tool-node.is-selected').forEach((item) => item.classList.remove('is-selected'));
       node.classList.add('is-selected');
-      universeDetail.innerHTML = `<span><strong>${tool.name}</strong> · ${categoryLabels[tool.category]} · ${tool.detail}</span>`;
     };
 
     node.addEventListener('mouseenter', showDetail);
@@ -1303,9 +1309,6 @@
       document.querySelectorAll('.universe-links line').forEach((line) => {
         line.style.opacity = filter === 'all' || line.dataset.category === filter ? '1' : '0.04';
       });
-      universeDetail.innerHTML = filter === 'all'
-        ? 'Hover, focus, or tap a node to see its role in the system.'
-        : `<span><strong>${categoryLabels[filter]}</strong> constellation selected.</span>`;
     });
   });
 </script>
