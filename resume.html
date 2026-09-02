@@ -653,7 +653,7 @@
     border-radius: 50%;
     background: rgba(255,255,255,0.88);
     box-shadow: 0 3px 11px rgba(15,17,23,0.1), 0 0 12px color-mix(in srgb, var(--node-color) 13%, transparent);
-    cursor: pointer;
+    cursor: default;
     padding: 0.45rem;
     transform: translate(-50%, -50%);
     transition: opacity 0.25s ease, transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
@@ -678,6 +678,62 @@
   .tool-node[data-category="automation"] { --node-color: #64aef5; }
   .tool-node[data-category="infrastructure"] { --node-color: #a78bfa; }
   .tool-node[data-category="api"] { --node-color: #ef7d79; }
+
+  .universe-hovercard {
+    position: absolute;
+    left: clamp(5.75rem, var(--tip-x, 50%), calc(100% - 5.75rem));
+    top: var(--tip-y, 50%);
+    z-index: 12;
+    min-width: 9.25rem;
+    padding: 0.62rem 0.78rem 0.68rem;
+    border: 1px solid rgba(240,168,108,0.28);
+    border-radius: 12px;
+    background: linear-gradient(150deg, rgba(23,36,53,0.98), rgba(10,18,29,0.98));
+    box-shadow: 0 16px 40px rgba(4,10,18,0.28), 0 0 24px rgba(240,168,108,0.08);
+    color: var(--sidebar-text);
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, calc(-100% - 30px)) scale(0.96);
+    transform-origin: center bottom;
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+    backdrop-filter: blur(12px);
+  }
+
+  .universe-hovercard.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, calc(-100% - 30px)) scale(1);
+  }
+
+  .universe-hovercard.is-below {
+    transform: translate(-50%, 30px) scale(0.96);
+    transform-origin: center top;
+  }
+
+  .universe-hovercard.is-below.is-visible { transform: translate(-50%, 30px) scale(1); }
+
+  .universe-hovercard-label {
+    display: block;
+    margin-bottom: 0.14rem;
+    color: var(--sidebar-accent);
+    font-size: 0.48rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .universe-hovercard-site {
+    display: block;
+    color: #fffdf8;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    line-height: 1.25;
+    white-space: nowrap;
+  }
 
   .universe-fineprint {
     position: absolute;
@@ -749,7 +805,7 @@
     .page { box-shadow: none; max-width: 100%; }
     .company-block { page-break-inside: avoid; }
     .download-btn { display: none !important; }
-    .universe-controls, .universe-orbit, .universe-links, .universe-core, .universe-atmosphere, .universe-fineprint { display: none !important; }
+    .universe-controls, .universe-orbit, .universe-links, .universe-core, .universe-atmosphere, .universe-fineprint, .universe-hovercard { display: none !important; }
     .tool-universe { height: auto; min-height: 0; padding: 1rem; background: transparent !important; }
     .universe-nodes { position: relative; display: flex; flex-wrap: wrap; gap: 0.3rem; }
     .tool-node { position: static; transform: none !important; animation: none; }
@@ -757,6 +813,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     .universe-core, .tool-node { animation: none; }
+    .universe-hovercard { transition: none; }
   }
 
   @media (max-width: 740px) {
@@ -1705,6 +1762,10 @@
         <svg class="universe-links" id="universe-links" viewBox="0 0 1000 720" preserveAspectRatio="none" aria-hidden="true"></svg>
         <div class="universe-core" aria-hidden="true"><img src="brg-logo.png" alt=""></div>
         <div class="universe-nodes" id="universe-nodes"></div>
+        <div class="universe-hovercard" id="universe-hovercard" role="tooltip" aria-hidden="true">
+          <span class="universe-hovercard-label">Website</span>
+          <span class="universe-hovercard-site" id="universe-hovercard-site"></span>
+        </div>
         <div class="universe-fineprint">These are just some of the tools I use. I am constantly building out my stack based on each client's needs.</div>
       </div>
     </div>
@@ -2073,10 +2134,13 @@
     const domain = logoDomains[provider] || `${provider.toLowerCase().replace(/[^a-z0-9]+/g, '')}.com`;
     return `https://www.google.com/s2/favicons?domain_url=https://${domain}&sz=128`;
   };
+  const websiteFor = (name) => logoDomains[providerName(name)];
 
   const universeNodes = document.getElementById('universe-nodes');
   const universeLinks = document.getElementById('universe-links');
   const universeCount = document.getElementById('universe-count-number');
+  const universeHovercard = document.getElementById('universe-hovercard');
+  const universeHovercardSite = document.getElementById('universe-hovercard-site');
   const ringPlan = [8, 13, 17, 18];
   const ringGeometry = [
     { x: 13, y: 12, offset: -90 },
@@ -2101,8 +2165,9 @@
     let y = 50 + Math.sin(radians) * geometry.y;
     if (tool.name === 'OrangeSlice') y -= 2.6;
     if (tool.name === 'Serper API') y += 3.2;
-    const node = document.createElement('button');
-    node.type = 'button';
+    const node = document.createElement('span');
+    node.tabIndex = 0;
+    node.setAttribute('role', 'img');
     node.className = 'tool-node';
     node.dataset.category = tool.category;
     node.dataset.index = String(index);
@@ -2110,8 +2175,7 @@
     node.style.setProperty('--y', `${y.toFixed(2)}%`);
     node.style.setProperty('--pulse-speed', `${(3.4 + (index % 7) * 0.42).toFixed(2)}s`);
     node.style.setProperty('--pulse-delay', `${(-index * 0.19).toFixed(2)}s`);
-    node.setAttribute('aria-label', `${tool.name}. ${categoryLabels[tool.category]}. ${tool.detail}`);
-    node.title = `${tool.name}: ${tool.detail}`;
+    node.setAttribute('aria-label', `${tool.name}. Website ${websiteFor(tool.name)}. ${categoryLabels[tool.category]}. ${tool.detail}`);
     const logo = document.createElement('img');
     logo.src = logoUrl(tool.name);
     logo.alt = '';
@@ -2132,9 +2196,30 @@
       node.classList.add('is-selected');
     };
 
-    node.addEventListener('mouseenter', showDetail);
-    node.addEventListener('focus', showDetail);
-    node.addEventListener('click', showDetail);
+    const showWebsite = () => {
+      universeHovercardSite.textContent = websiteFor(tool.name);
+      universeHovercard.style.setProperty('--tip-x', `${x.toFixed(2)}%`);
+      universeHovercard.style.setProperty('--tip-y', `${y.toFixed(2)}%`);
+      universeHovercard.classList.toggle('is-below', y < 22);
+      universeHovercard.classList.add('is-visible');
+      universeHovercard.setAttribute('aria-hidden', 'false');
+    };
+
+    const hideWebsite = () => {
+      universeHovercard.classList.remove('is-visible');
+      universeHovercard.setAttribute('aria-hidden', 'true');
+    };
+
+    node.addEventListener('mouseenter', () => {
+      showDetail();
+      showWebsite();
+    });
+    node.addEventListener('mouseleave', hideWebsite);
+    node.addEventListener('focus', () => {
+      showDetail();
+      showWebsite();
+    });
+    node.addEventListener('blur', hideWebsite);
     ringIndex += 1;
   });
 
