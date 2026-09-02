@@ -1752,7 +1752,7 @@
         <div class="universe-core" aria-hidden="true"><img src="brg-logo.png" alt=""></div>
         <div class="universe-nodes" id="universe-nodes"></div>
         <div class="universe-hovercard" id="universe-hovercard" role="tooltip" aria-hidden="true">
-          <span class="universe-hovercard-label">Website</span>
+          <span class="universe-hovercard-label" id="universe-hovercard-label"></span>
           <span class="universe-hovercard-site" id="universe-hovercard-site"></span>
         </div>
         <div class="universe-fineprint">These are just some of the tools I use. I am constantly building out my stack based on each client's needs.</div>
@@ -2142,6 +2142,7 @@
   const universeNodes = document.getElementById('universe-nodes');
   const universeLinks = document.getElementById('universe-links');
   const universeHovercard = document.getElementById('universe-hovercard');
+  const universeHovercardLabel = document.getElementById('universe-hovercard-label');
   const universeHovercardSite = document.getElementById('universe-hovercard-site');
   const ringPlan = [7, 9, 10, 11];
   const ringGeometry = [
@@ -2201,6 +2202,7 @@
     };
 
     const showWebsite = () => {
+      universeHovercardLabel.textContent = tool.name;
       universeHovercardSite.textContent = websiteFor(tool.name);
       universeHovercard.style.setProperty('--tip-x', `${x.toFixed(2)}%`);
       universeHovercard.style.setProperty('--tip-y', `${y.toFixed(2)}%`);
