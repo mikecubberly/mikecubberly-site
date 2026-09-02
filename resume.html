@@ -502,25 +502,6 @@
     line-height: 1.65;
   }
 
-  .universe-count {
-    flex: 0 0 auto;
-    color: var(--accent-warm);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.45rem;
-    font-weight: 700;
-  }
-
-  .universe-count span {
-    display: block;
-    color: var(--light);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.54rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-align: right;
-    text-transform: uppercase;
-  }
-
   .universe-controls {
     display: flex;
     flex-wrap: wrap;
@@ -1227,15 +1208,6 @@
     line-height: 1.7;
   }
 
-  .universe-count {
-    font-family: 'Bricolage Grotesque', sans-serif;
-    font-size: 2rem;
-    font-weight: 680;
-    letter-spacing: -0.06em;
-  }
-
-  .universe-count span { font-family: 'IBM Plex Sans', sans-serif; }
-
   .universe-filter {
     border-color: var(--rule);
     background: transparent;
@@ -1583,8 +1555,6 @@
     .main-header { min-height: 300px; }
     .main-header h1 { font-size: clamp(3rem, 15vw, 4.3rem); }
     .universe-intro { display: block; }
-    .universe-count { margin-top: 0.8rem; }
-    .universe-count span { text-align: left; }
     .tool-universe { height: 620px; }
     .company-bar { align-items: flex-start; }
     .company-bar-right { padding-top: 0.25rem; }
@@ -1754,7 +1724,6 @@
       <div class="section-header"><h2 id="tool-universe-heading">GTM Systems Universe</h2></div>
       <div class="universe-intro">
         <p>A connected operating system for intelligence, data, orchestration, infrastructure, and direct API workflows. Select a constellation or explore an individual node.</p>
-        <div class="universe-count"><span id="universe-count-number">0</span><span>Connected systems</span></div>
       </div>
       <div class="universe-controls" role="group" aria-label="Filter tool universe">
         <button class="universe-filter is-active" type="button" data-filter="all">Universe</button>
@@ -2172,7 +2141,6 @@
 
   const universeNodes = document.getElementById('universe-nodes');
   const universeLinks = document.getElementById('universe-links');
-  const universeCount = document.getElementById('universe-count-number');
   const universeHovercard = document.getElementById('universe-hovercard');
   const universeHovercardSite = document.getElementById('universe-hovercard-site');
   const ringPlan = [7, 9, 10, 11];
@@ -2258,8 +2226,6 @@
     node.addEventListener('blur', hideWebsite);
     ringIndex += 1;
   });
-
-  universeCount.textContent = String(toolUniverse.length);
 
   document.querySelectorAll('.universe-filter').forEach((button) => {
     button.addEventListener('click', () => {
