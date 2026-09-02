@@ -748,7 +748,7 @@
     .page { box-shadow: none; max-width: 100%; }
     .company-block { page-break-inside: avoid; }
     .download-btn { display: none !important; }
-    .universe-controls, .universe-orbit, .universe-links, .universe-core, .universe-fineprint { display: none !important; }
+    .universe-controls, .universe-orbit, .universe-links, .universe-core, .universe-atmosphere, .universe-fineprint { display: none !important; }
     .tool-universe { height: auto; min-height: 0; padding: 1rem; background: transparent !important; }
     .universe-nodes { position: relative; display: flex; flex-wrap: wrap; gap: 0.3rem; }
     .tool-node { position: static; transform: none !important; animation: none; }
@@ -1032,8 +1032,9 @@
     font-family: 'Bricolage Grotesque', sans-serif;
     font-size: clamp(3.55rem, 7.4vw, 6.45rem);
     font-weight: 740;
-    letter-spacing: -0.075em;
-    line-height: 0.84;
+    letter-spacing: -0.02em;
+    line-height: 0.92;
+    word-spacing: 0.025em;
   }
 
   .main-header h1 em {
@@ -1110,6 +1111,151 @@
       radial-gradient(circle at center, rgba(213,134,72,0.1), transparent 34%),
       linear-gradient(180deg, rgba(255,255,255,0.32), rgba(255,255,255,0));
   }
+
+  .universe-atmosphere {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  .space-cloud {
+    position: absolute;
+    width: 74px;
+    height: 18px;
+    border-radius: 999px;
+    background: rgba(23,79,104,0.07);
+    filter: blur(0.3px);
+    opacity: 0.68;
+    animation: cloudDrift 18s ease-in-out infinite alternate;
+  }
+
+  .space-cloud::before,
+  .space-cloud::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    border-radius: 50%;
+    background: inherit;
+  }
+
+  .space-cloud::before { left: 13px; width: 28px; height: 28px; }
+  .space-cloud::after { right: 12px; width: 36px; height: 36px; }
+  .space-cloud-one { left: 4%; top: 18%; }
+  .space-cloud-two {
+    right: 3%;
+    top: 67%;
+    width: 92px;
+    opacity: 0.48;
+    animation-delay: -8s;
+  }
+
+  .space-planet {
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(213,134,72,0.18);
+    border-radius: 50%;
+    background: radial-gradient(circle at 32% 28%, rgba(255,255,255,0.76), rgba(213,134,72,0.12) 38%, rgba(23,79,104,0.08));
+    box-shadow: inset -8px -6px 15px rgba(23,79,104,0.05);
+    animation: planetFloat 8s ease-in-out infinite;
+  }
+
+  .space-planet::after {
+    content: '';
+    position: absolute;
+    inset: 44% -14%;
+    border: 1px solid rgba(23,79,104,0.14);
+    border-radius: 50%;
+    transform: rotate(-17deg);
+  }
+
+  .space-planet-one { right: 3%; top: 13%; }
+  .space-planet-two {
+    left: 2%;
+    bottom: 16%;
+    width: 29px;
+    height: 29px;
+    animation-delay: -4s;
+  }
+
+  .space-rocket {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    color: rgba(23,79,104,0.27);
+    filter: drop-shadow(0 4px 8px rgba(23,79,104,0.08));
+  }
+
+  .space-rocket-one {
+    left: 5%;
+    bottom: 5%;
+    animation: rocketGlide 15s ease-in-out infinite;
+  }
+
+  .space-rocket-two {
+    right: 5%;
+    top: 35%;
+    width: 21px;
+    height: 21px;
+    color: rgba(213,134,72,0.25);
+    animation: rocketHover 10s ease-in-out -5s infinite;
+  }
+
+  .shooting-star {
+    position: absolute;
+    width: 92px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(213,134,72,0.34));
+    opacity: 0;
+    transform: rotate(-28deg);
+    animation: starShoot 9s ease-out infinite;
+  }
+
+  .shooting-star::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: -2px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(213,134,72,0.5);
+    box-shadow: 0 0 10px rgba(213,134,72,0.3);
+  }
+
+  .shooting-star-one { left: 7%; top: 9%; }
+  .shooting-star-two { right: 8%; top: 53%; animation-delay: -5.5s; }
+
+  @keyframes cloudDrift {
+    from { transform: translate3d(-6px, 0, 0); }
+    to { transform: translate3d(12px, -5px, 0); }
+  }
+
+  @keyframes planetFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(3deg); }
+  }
+
+  @keyframes rocketGlide {
+    0%, 100% { transform: translate3d(0, 0, 0) rotate(8deg); }
+    50% { transform: translate3d(36px, -25px, 0) rotate(18deg); }
+  }
+
+  @keyframes rocketHover {
+    0%, 100% { transform: translateY(0) rotate(-28deg); }
+    50% { transform: translateY(-15px) rotate(-20deg); }
+  }
+
+  @keyframes starShoot {
+    0%, 72% { opacity: 0; transform: translate3d(-22px, 16px, 0) rotate(-28deg); }
+    77% { opacity: 0.72; }
+    88%, 100% { opacity: 0; transform: translate3d(76px, -40px, 0) rotate(-28deg); }
+  }
+
+  .universe-fineprint { bottom: 0.15rem; }
 
   .company-block {
     margin-bottom: 2.2rem;
@@ -1226,6 +1372,14 @@
     .company-tenure { white-space: normal; text-align: right; }
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .space-cloud,
+    .space-planet,
+    .space-rocket,
+    .shooting-star { animation: none; }
+    .shooting-star { opacity: 0.18; }
+  }
+
   @media print {
     body { padding: 0; background: white; }
     .page { display: block; padding: 0; border: 0; }
@@ -1276,11 +1430,11 @@
       <div class="sidebar-section-label">By the Numbers</div>
       <div class="stat-grid">
         <div class="stat-box">
-          <span class="stat-num">12+</span>
+          <span class="stat-num">10+</span>
           <span class="stat-label">Years GTM Experience</span>
         </div>
         <div class="stat-box">
-          <span class="stat-num">70K+</span>
+          <span class="stat-num">100K+</span>
           <span class="stat-label">RevGenius Members Led</span>
         </div>
         <div class="stat-box">
@@ -1335,7 +1489,7 @@
     <div class="section">
       <div class="section-header"><h2>Summary</h2></div>
       <p class="summary-text">
-        Operator-founder and GTM professional with <strong>12+ years</strong> building and managing partner ecosystems, channel relationships, and revenue-driving alliances across high-growth SaaS environments. As founder of <strong>Bottle Rocket Growth</strong>, I built the company to <strong>$350K ARR</strong> and have since expanded into multiple operating arms - including GTM talent placement and motorsport partnerships. I lead GTM strategy for a <strong>70,000+ member community</strong> at RevGenius, serve as a <strong>GTM advisor to Airscale</strong>, and have a track record of growing into leadership at every organization I have joined. I thrive at the intersection of partner development, co-selling strategy, and ecosystem-building.
+        Operator-founder and GTM professional with <strong>10+ years</strong> building and managing partner ecosystems, channel relationships, and revenue-driving alliances across high-growth SaaS environments. As founder of <strong>Bottle Rocket Growth</strong>, I built the company to <strong>$350K ARR</strong> and have since expanded into multiple operating arms - including GTM talent placement and motorsport partnerships. I lead GTM strategy for a <strong>100,000+ member community</strong> at RevGenius, serve as a <strong>GTM advisor to Airscale</strong>, and have a track record of growing into leadership at every organization I have joined. I thrive at the intersection of partner development, co-selling strategy, and ecosystem-building.
       </p>
     </div>
 
@@ -1346,7 +1500,7 @@
         <div class="universe-count"><span id="universe-count-number">0</span><span>Connected systems</span></div>
       </div>
       <div class="universe-controls" role="group" aria-label="Filter tool universe">
-        <button class="universe-filter is-active" type="button" data-filter="all">Entire universe</button>
+        <button class="universe-filter is-active" type="button" data-filter="all">Universe</button>
         <button class="universe-filter" type="button" data-filter="intelligence">Intelligence</button>
         <button class="universe-filter" type="button" data-filter="data">Data</button>
         <button class="universe-filter" type="button" data-filter="automation">Orchestration</button>
@@ -1358,6 +1512,16 @@
         <div class="universe-orbit" aria-hidden="true"></div>
         <div class="universe-orbit" aria-hidden="true"></div>
         <div class="universe-orbit" aria-hidden="true"></div>
+        <div class="universe-atmosphere" aria-hidden="true">
+          <span class="space-cloud space-cloud-one"></span>
+          <span class="space-cloud space-cloud-two"></span>
+          <span class="space-planet space-planet-one"></span>
+          <span class="space-planet space-planet-two"></span>
+          <svg class="space-rocket space-rocket-one" viewBox="0 0 32 32"><path d="M18.7 4.4c3.5-1.7 6.6-1.6 8.3-1.4.2 1.7.3 4.8-1.4 8.3l-5.1 10.2-10-10 8.2-7.1Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="21.5" cy="8.8" r="2.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="m11.3 12.4-5.1 1.2-3.1 4.2 8.2.8m8.3 2.1-1.2 5.1-4.2 3.1-.8-8.2M8.7 23.3l-4 4m7-2.4-2.1 3.4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.4"/></svg>
+          <svg class="space-rocket space-rocket-two" viewBox="0 0 32 32"><path d="M18.7 4.4c3.5-1.7 6.6-1.6 8.3-1.4.2 1.7.3 4.8-1.4 8.3l-5.1 10.2-10-10 8.2-7.1Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="21.5" cy="8.8" r="2.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="m11.3 12.4-5.1 1.2-3.1 4.2 8.2.8m8.3 2.1-1.2 5.1-4.2 3.1-.8-8.2M8.7 23.3l-4 4m7-2.4-2.1 3.4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.4"/></svg>
+          <span class="shooting-star shooting-star-one"></span>
+          <span class="shooting-star shooting-star-two"></span>
+        </div>
         <svg class="universe-links" id="universe-links" viewBox="0 0 1000 720" preserveAspectRatio="none" aria-hidden="true"></svg>
         <div class="universe-core" aria-hidden="true"><img src="brg-logo.png" alt=""></div>
         <div class="universe-nodes" id="universe-nodes"></div>
@@ -1433,7 +1597,7 @@
         </div>
 
         <ul class="role-bullets">
-          <li>Joined as Community Manager and was promoted to Head of Community - taking full ownership of strategy and programming for a <strong>70,000+ member</strong> GTM and RevOps peer ecosystem for revenue leaders.</li>
+          <li>Joined as Community Manager and was promoted to Head of Community - taking full ownership of strategy and programming for a <strong>100,000+ member</strong> GTM and RevOps peer ecosystem for revenue leaders.</li>
           <li>Built and lead a team of 6 channel moderators and 1 community lead, systematizing internal growth motions and running engagement programs that drive sustained participation across the community.</li>
           <li>Negotiate and manage partnerships with member organizations, delivering targeted GTM workshops and co-branded programming across sales, marketing, and customer success functions.</li>
           <li>Advise and mentor early-stage founders on partner development, pipeline generation, and co-selling strategy - acting as a connector between member organizations and growth opportunities.</li>
