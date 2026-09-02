@@ -2026,7 +2026,7 @@
   </main>
 </div>
 <script>
-  const toolUniverse = [
+  const toolUniverseEntries = [
     { name: 'Cloudflare', category: 'infrastructure', detail: 'Edge delivery, DNS, application security, Pages deployments, and serverless infrastructure.' },
     { name: 'GitHub', category: 'infrastructure', detail: 'Source control, production release workflows, and the operating record behind deployed BRG systems.' },
     { name: 'Clay', category: 'data', detail: 'Multi-provider enrichment, research waterfalls, scoring logic, and structured outbound data.' },
@@ -2146,13 +2146,35 @@
     return `https://www.google.com/s2/favicons?domain_url=https://${domain}&sz=128`;
   };
   const websiteFor = (name) => logoDomains[providerName(name)];
+  const toolUniverse = toolUniverseEntries.reduce((uniqueTools, tool) => {
+    const name = providerName(tool.name);
+    const domain = websiteFor(name);
+    const existing = uniqueTools.find((item) => item.domain === domain);
+
+    if (existing) {
+      if (!existing.aliases.includes(name)) existing.aliases.push(name);
+      if (!existing.categories.includes(tool.category)) existing.categories.push(tool.category);
+      if (!existing.details.includes(tool.detail)) existing.details.push(tool.detail);
+      return uniqueTools;
+    }
+
+    uniqueTools.push({
+      ...tool,
+      name,
+      domain,
+      aliases: [name],
+      categories: [tool.category],
+      details: [tool.detail]
+    });
+    return uniqueTools;
+  }, []);
 
   const universeNodes = document.getElementById('universe-nodes');
   const universeLinks = document.getElementById('universe-links');
   const universeCount = document.getElementById('universe-count-number');
   const universeHovercard = document.getElementById('universe-hovercard');
   const universeHovercardSite = document.getElementById('universe-hovercard-site');
-  const ringPlan = [8, 13, 17, 18];
+  const ringPlan = [7, 9, 10, 11];
   const ringGeometry = [
     { x: 13, y: 12, offset: -90 },
     { x: 23, y: 22, offset: -72 },
@@ -2175,18 +2197,19 @@
     let x = 50 + Math.cos(radians) * geometry.x;
     let y = 50 + Math.sin(radians) * geometry.y;
     if (tool.name === 'OrangeSlice') y -= 2.6;
-    if (tool.name === 'Serper API') y += 3.2;
+    if (tool.name === 'Serper') y += 3.2;
     const node = document.createElement('span');
     node.tabIndex = 0;
     node.setAttribute('role', 'img');
     node.className = 'tool-node';
     node.dataset.category = tool.category;
+    node.dataset.categories = tool.categories.join(' ');
     node.dataset.index = String(index);
     node.style.setProperty('--x', `${x.toFixed(2)}%`);
     node.style.setProperty('--y', `${y.toFixed(2)}%`);
     node.style.setProperty('--pulse-speed', `${(3.4 + (index % 7) * 0.42).toFixed(2)}s`);
     node.style.setProperty('--pulse-delay', `${(-index * 0.19).toFixed(2)}s`);
-    node.setAttribute('aria-label', `${tool.name}. Website ${websiteFor(tool.name)}. ${categoryLabels[tool.category]}. ${tool.detail}`);
+    node.setAttribute('aria-label', `${tool.aliases.join(' and ')}. Website ${tool.domain}. ${tool.categories.map((category) => categoryLabels[category]).join(' and ')}. ${tool.details.join(' ')}`);
     const logo = document.createElement('img');
     logo.src = logoUrl(tool.name);
     logo.alt = '';
@@ -2200,6 +2223,7 @@
     line.setAttribute('x2', (x * 10).toFixed(1));
     line.setAttribute('y2', (y * 7.2).toFixed(1));
     line.dataset.category = tool.category;
+    line.dataset.categories = tool.categories.join(' ');
     universeLinks.appendChild(line);
 
     const showDetail = () => {
@@ -2240,9 +2264,13 @@
     button.addEventListener('click', () => {
       const filter = button.dataset.filter;
       document.querySelectorAll('.universe-filter').forEach((item) => item.classList.toggle('is-active', item === button));
-      document.querySelectorAll('.tool-node').forEach((node) => node.classList.toggle('is-muted', filter !== 'all' && node.dataset.category !== filter));
+      document.querySelectorAll('.tool-node').forEach((node) => {
+        const matches = filter === 'all' || node.dataset.categories.split(' ').includes(filter);
+        node.classList.toggle('is-muted', !matches);
+      });
       document.querySelectorAll('.universe-links line').forEach((line) => {
-        line.style.opacity = filter === 'all' || line.dataset.category === filter ? '1' : '0.04';
+        const matches = filter === 'all' || line.dataset.categories.split(' ').includes(filter);
+        line.style.opacity = matches ? '1' : '0.04';
       });
     });
   });
