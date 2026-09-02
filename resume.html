@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Mike Cubberly - GTM Partnerships & Revenue</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -784,6 +784,455 @@
     .universe-core { width: 92px; height: 92px; }
     .universe-core img { width: 72px; height: 72px; }
   }
+
+  /* 2026 EDITORIAL REDESIGN */
+  :root {
+    --ink: #111724;
+    --mid: #4d5664;
+    --light: #7f8894;
+    --rule: #d9d8d2;
+    --accent: #174f68;
+    --accent-warm: #d58648;
+    --bg: #e9e7e1;
+    --white: #f8f7f2;
+    --sidebar-bg: #162131;
+    --sidebar-text: #f3f0e8;
+    --sidebar-muted: #a8b0bb;
+    --sidebar-accent: #f0a86c;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    display: block;
+    min-height: 100vh;
+    padding: clamp(0.75rem, 2vw, 2rem);
+    background:
+      radial-gradient(circle at 12% 6%, rgba(213,134,72,0.14), transparent 25rem),
+      linear-gradient(135deg, #eceae4 0%, #e4e8e7 100%);
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+
+  .page {
+    width: min(100%, 1240px);
+    max-width: none;
+    margin: 0 auto;
+    padding: 18px;
+    display: grid;
+    grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+    align-items: start;
+    gap: 18px;
+    overflow: visible;
+    border: 1px solid rgba(17,23,36,0.08);
+    border-radius: 30px;
+    background: rgba(248,247,242,0.94);
+    box-shadow: 0 26px 80px rgba(17,23,36,0.12);
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 18px;
+    min-height: 0;
+    padding: 1.35rem;
+    overflow: hidden;
+    border-radius: 22px;
+    background:
+      radial-gradient(circle at 85% 8%, rgba(240,168,108,0.22), transparent 15rem),
+      linear-gradient(160deg, #172435 0%, #111a27 100%);
+    box-shadow: 0 20px 48px rgba(17,23,36,0.2);
+  }
+
+  .sidebar::before {
+    top: auto;
+    right: -12rem;
+    bottom: -12rem;
+    width: 28rem;
+    height: 28rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: transparent;
+  }
+
+  .portrait-shell {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1.42 / 1;
+    margin-bottom: 1.35rem;
+    overflow: hidden;
+    border-radius: 16px;
+    background: #edc2cf;
+  }
+
+  .portrait-shell::after {
+    content: 'CHICAGO  /  OPERATOR  /  FOUNDER';
+    position: absolute;
+    right: 0.75rem;
+    bottom: 0.65rem;
+    color: rgba(255,255,255,0.88);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.48rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+  }
+
+  .portrait-shell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 29%;
+    filter: saturate(0.86) contrast(1.04);
+    transform: scale(1.04);
+  }
+
+  .sidebar-name {
+    margin: 0;
+    color: var(--white);
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: clamp(2.25rem, 4.1vw, 3.35rem);
+    font-weight: 720;
+    letter-spacing: -0.07em;
+    line-height: 0.86;
+  }
+
+  .sidebar-title {
+    margin: 0.85rem 0 1.45rem;
+    color: var(--sidebar-accent);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+  }
+
+  .sidebar-divider {
+    width: 100%;
+    height: 1px;
+    margin-bottom: 1.45rem;
+    background: rgba(255,255,255,0.12);
+  }
+
+  .sidebar-section { margin-bottom: 1.55rem; }
+  .sidebar-section:last-child { margin-bottom: 0.2rem; }
+
+  .sidebar-section-label {
+    margin-bottom: 0.72rem;
+    padding: 0;
+    border: 0;
+    color: var(--sidebar-muted);
+    font-size: 0.54rem;
+    letter-spacing: 0.18em;
+  }
+
+  .contact-item {
+    gap: 0.55rem;
+    margin-bottom: 0.48rem;
+  }
+
+  .contact-icon {
+    width: 12px;
+    height: 12px;
+    color: var(--sidebar-accent);
+    opacity: 0.8;
+  }
+
+  .contact-item a,
+  .contact-item span {
+    color: #e5e8ec;
+    font-size: 0.7rem;
+    letter-spacing: -0.01em;
+    word-break: normal;
+  }
+
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .stat-box {
+    min-height: 78px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.75rem 0.55rem 0.65rem 0;
+    border: 0;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    border-radius: 0;
+    background: transparent;
+    text-align: left;
+  }
+
+  .stat-box:nth-child(even) {
+    padding-left: 0.7rem;
+    border-left: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .stat-num {
+    color: var(--sidebar-accent);
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 680;
+    letter-spacing: -0.055em;
+  }
+
+  .stat-label {
+    max-width: 115px;
+    color: var(--sidebar-muted);
+    font-size: 0.48rem;
+    letter-spacing: 0.06em;
+    line-height: 1.35;
+  }
+
+  .advisory-item {
+    padding-left: 0;
+    color: #d7dce3;
+    font-size: 0.68rem;
+    line-height: 1.55;
+  }
+
+  .advisory-item::before { display: none; }
+
+  .skill-tag {
+    margin: 0.15rem 0.12rem 0 0;
+    padding: 0.23rem 0.47rem;
+    border-color: rgba(255,255,255,0.12);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.045);
+    color: #dfe3e8;
+    font-size: 0.56rem;
+  }
+
+  .main {
+    min-width: 0;
+    padding: clamp(1.65rem, 4vw, 3.3rem) clamp(1rem, 3.2vw, 2.7rem) 2.8rem;
+  }
+
+  .main-header {
+    min-height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 2.4rem;
+    padding-bottom: 1.65rem;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .main-header-eyebrow {
+    width: fit-content;
+    margin: 0;
+    padding: 0.38rem 0.64rem;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    color: var(--accent);
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+  }
+
+  .main-header h1 {
+    max-width: 760px;
+    margin-top: 3.5rem;
+    color: var(--ink);
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: clamp(3.55rem, 7.4vw, 6.45rem);
+    font-weight: 740;
+    letter-spacing: -0.075em;
+    line-height: 0.84;
+  }
+
+  .main-header h1 em {
+    display: block;
+    margin-top: 0.18em;
+    color: var(--accent);
+    font-style: normal;
+    font-weight: 520;
+  }
+
+  .section { margin-bottom: 3.1rem; }
+
+  .section-header {
+    gap: 1rem;
+    margin-bottom: 1.35rem;
+  }
+
+  .section-header h2 {
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+  }
+
+  .summary-text {
+    max-width: 760px;
+    color: #394453;
+    font-size: clamp(0.9rem, 1.5vw, 1.04rem);
+    font-weight: 300;
+    letter-spacing: -0.012em;
+    line-height: 1.78;
+  }
+
+  .tool-universe-section {
+    margin: 3.5rem -0.5rem 3.8rem;
+    padding: 1.7rem 0.5rem 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .tool-universe-section .section-header::after { display: none; }
+
+  .universe-intro {
+    align-items: flex-start;
+    margin: 0 0 1.1rem;
+  }
+
+  .universe-intro p {
+    max-width: 560px;
+    font-size: 0.74rem;
+    line-height: 1.7;
+  }
+
+  .universe-count {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 2rem;
+    font-weight: 680;
+    letter-spacing: -0.06em;
+  }
+
+  .universe-count span { font-family: 'IBM Plex Sans', sans-serif; }
+
+  .universe-filter {
+    border-color: var(--rule);
+    background: transparent;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.57rem;
+  }
+
+  .tool-universe {
+    height: 700px;
+    border-radius: 24px;
+    background:
+      radial-gradient(circle at center, rgba(213,134,72,0.1), transparent 34%),
+      linear-gradient(180deg, rgba(255,255,255,0.32), rgba(255,255,255,0));
+  }
+
+  .company-block {
+    margin-bottom: 2.2rem;
+    padding-bottom: 2.2rem;
+    border-color: var(--rule);
+  }
+
+  .company-bar {
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    padding: 0.8rem 0;
+    border: 0;
+    border-top: 1px solid var(--ink);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .company-logo,
+  .company-logo-fallback,
+  .company-bar-left > a:first-child {
+    border-radius: 50% !important;
+  }
+
+  .company-name {
+    color: var(--ink);
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 650;
+    letter-spacing: -0.035em;
+  }
+
+  .company-tenure {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--light);
+    font-size: 0.56rem;
+  }
+
+  .role-title-main {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 1.22rem;
+    font-weight: 620;
+    letter-spacing: -0.035em;
+  }
+
+  .role-title-sub { font-size: 0.75rem; }
+
+  .promo-pill,
+  .brand-tag {
+    border-radius: 999px;
+  }
+
+  .role-bullets li {
+    color: #485261;
+    font-size: 0.78rem;
+    line-height: 1.76;
+  }
+
+  .role-bullets li::before {
+    top: 9px;
+    border-radius: 0;
+    background: var(--accent-warm);
+    transform: rotate(45deg);
+  }
+
+  .download-btn {
+    border-color: #172435;
+    background: #172435;
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+
+  @media (max-width: 880px) {
+    body { padding: 0; }
+    .page {
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: 10px;
+      border: 0;
+      border-radius: 0;
+    }
+    .sidebar {
+      position: relative;
+      top: auto;
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 1.4rem;
+      padding: 1rem;
+    }
+    .portrait-shell { grid-row: span 3; margin: 0; }
+    .sidebar-name { align-self: end; }
+    .sidebar-title { margin: -0.8rem 0 0; }
+    .sidebar-divider { display: none; }
+    .sidebar-section { grid-column: 1 / -1; margin-bottom: 0.5rem; }
+    .main { padding: 2.6rem 1.2rem; }
+    .main-header { min-height: 315px; }
+  }
+
+  @media (max-width: 560px) {
+    .sidebar { display: block; }
+    .portrait-shell { margin-bottom: 1.2rem; }
+    .sidebar-name { font-size: 3rem; }
+    .sidebar-title { margin: 0.8rem 0 1.25rem; }
+    .main-header { min-height: 300px; }
+    .main-header h1 { font-size: clamp(3rem, 15vw, 4.3rem); }
+    .universe-intro { display: block; }
+    .universe-count { margin-top: 0.8rem; }
+    .universe-count span { text-align: left; }
+    .tool-universe { height: 620px; }
+    .company-bar { align-items: flex-start; }
+    .company-bar-right { padding-top: 0.25rem; }
+    .company-tenure { white-space: normal; text-align: right; }
+  }
+
+  @media print {
+    body { padding: 0; background: white; }
+    .page { display: block; padding: 0; border: 0; }
+    .sidebar { position: static; box-shadow: none; border-radius: 0; }
+    .portrait-shell { display: none; }
+    .main-header { min-height: 0; }
+  }
 </style>
 </head>
 <body>
@@ -795,6 +1244,9 @@
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
+    <figure class="portrait-shell">
+      <img src="mike-cubberly-clean.png" alt="Mike Cubberly">
+    </figure>
     <div class="sidebar-name">Mike<br>Cubberly</div>
     <div class="sidebar-title">GTM Partnerships &amp; Revenue</div>
     <hr class="sidebar-divider">
