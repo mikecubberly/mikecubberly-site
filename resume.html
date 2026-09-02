@@ -760,6 +760,10 @@
   @media (prefers-reduced-motion: reduce) {
     .universe-core, .tool-node { animation: none; }
     .universe-hovercard { transition: none; }
+    .building-status-dot {
+      animation: none;
+      box-shadow: 0 0 0 4px rgba(34,197,94,0.16), 0 0 14px rgba(34,197,94,0.62);
+    }
   }
 
   @media (max-width: 740px) {
@@ -1100,11 +1104,37 @@
     width: fit-content;
     margin: 0;
     padding: 0.38rem 0.64rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.46rem;
     border: 1px solid var(--rule);
     border-radius: 999px;
     color: var(--accent);
     font-size: 0.58rem;
     letter-spacing: 0.15em;
+  }
+
+  .building-status-dot {
+    width: 9px;
+    height: 9px;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 3px rgba(34,197,94,0.16), 0 0 12px rgba(34,197,94,0.58);
+    animation: buildingStatusPulse 4.8s ease-in-out infinite;
+  }
+
+  @keyframes buildingStatusPulse {
+    0%, 100% {
+      opacity: 0.82;
+      transform: scale(0.92);
+      box-shadow: 0 0 0 3px rgba(34,197,94,0.14), 0 0 9px rgba(34,197,94,0.46);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.18);
+      box-shadow: 0 0 0 6px rgba(34,197,94,0.13), 0 0 20px rgba(34,197,94,0.78);
+    }
   }
 
   .main-header h1 {
@@ -1662,7 +1692,10 @@
   <main class="main">
 
     <div class="main-header">
-      <div class="main-header-eyebrow">Built to Evolve</div>
+      <div class="main-header-eyebrow" aria-label="Building, active status">
+        <span class="building-status-dot" aria-hidden="true"></span>
+        <span>BUILDING</span>
+      </div>
       <h1>Operator. Builder.<br><em>GTM Ecosystem Architect.</em></h1>
     </div>
 
