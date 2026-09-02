@@ -1481,27 +1481,44 @@
 
   .role-title-sub { font-size: 0.75rem; }
 
-  .role-systems {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 0.65rem;
+  .role-tools {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.42rem;
     margin: 0.72rem 0 0.95rem;
-    padding: 0.62rem 0.72rem;
-    border-left: 2px solid rgba(23,79,104,0.32);
-    background: rgba(23,79,104,0.035);
-    color: var(--mid);
-    font-size: 0.65rem;
-    line-height: 1.55;
   }
 
-  .role-systems-label {
+  .role-tools-label {
+    margin-right: 0.12rem;
     color: var(--accent);
     font-size: 0.5rem;
     font-weight: 600;
     letter-spacing: 0.13em;
-    line-height: 2;
     text-transform: uppercase;
   }
+
+  .role-tool {
+    padding: 0.3rem 0.48rem;
+    border: 1px solid rgba(23,79,104,0.15);
+    border-radius: 999px;
+    background: rgba(23,79,104,0.035);
+    color: var(--mid);
+    font-size: 0.57rem;
+    line-height: 1;
+  }
+
+  .role-tools-universe-link {
+    margin-left: 0.18rem;
+    color: var(--accent);
+    font-size: 0.56rem;
+    font-weight: 500;
+    text-decoration: none;
+    text-underline-offset: 3px;
+  }
+
+  .role-tools-universe-link:hover,
+  .role-tools-universe-link:focus-visible { text-decoration: underline; }
 
   .promo-pill,
   .brand-tag {
@@ -1571,7 +1588,7 @@
     .company-bar { align-items: flex-start; }
     .company-bar-right { padding-top: 0.25rem; }
     .company-tenure { white-space: normal; text-align: right; }
-    .role-systems { grid-template-columns: 1fr; gap: 0.15rem; }
+    .role-tools-universe-link { width: 100%; margin: 0.18rem 0 0; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1732,7 +1749,7 @@
       </p>
     </div>
 
-    <div class="section tool-universe-section" aria-labelledby="tool-universe-heading">
+    <div class="section tool-universe-section" id="gtm-systems-universe" aria-labelledby="tool-universe-heading">
       <div class="section-header"><h2 id="tool-universe-heading">GTM Systems Universe</h2></div>
       <div class="universe-intro">
         <p>A connected operating system for intelligence, data, orchestration, infrastructure, and direct API workflows. Select a constellation or explore an individual node.</p>
@@ -1805,11 +1822,6 @@
           <span class="brand-tag">Bottle Rocket Events - GTM for Conferences &amp; Events</span>
         </div>
 
-        <div class="role-systems">
-          <span class="role-systems-label">Systems</span>
-          <span>Build and operate with HeyReach, Clay, Apollo, HubSpot, GitHub, Cloudflare, OpenAI, GoLogin, and direct APIs across research, outreach, CRM, authentication, and deployment.</span>
-        </div>
-
         <ul class="role-bullets">
           <li>Built Bottle Rocket Growth from zero to <strong>$350K ARR</strong>, expanding from a GTM consultancy into multiple operating arms: <a href="https://bottlerocketracing.com" target="_blank">Bottle Rocket Racing</a>, which brings GTM strategy and sponsorship growth to motorsport teams, <strong>Bottle Rocket Talent</strong>, which places go-to-market operators and leaders into high-growth companies, and <strong>Bottle Rocket Events</strong>, which runs go-to-market for conferences and events.</li>
           <li>Serve as the primary GTM operator and advisor to early-stage founders across GTM execution, sales motion design, and pipeline development - embedding directly into their teams to shape messaging, positioning, and customer-facing processes.</li>
@@ -1848,11 +1860,6 @@
               <span class="role-sub-date">Feb – Dec 2024</span>
             </div>
           </div>
-        </div>
-
-        <div class="role-systems">
-          <span class="role-systems-label">Systems</span>
-          <span>Manage the community across Slack and Trova, with Common Room, HubSpot, and Zapier supporting member intelligence, CRM, and workflow automation.</span>
         </div>
 
         <ul class="role-bullets">
@@ -1900,11 +1907,6 @@
           </div>
         </div>
 
-        <div class="role-systems">
-          <span class="role-systems-label">Systems</span>
-          <span>Worked inside the Glencoco marketplace, native CRM and auto-dialer, campaign analytics, call recordings, training modules, Stripe payouts, and client CRM integrations.</span>
-        </div>
-
         <ul class="role-bullets">
           <li>Started as a contract GTM consultant, was hired full-time to own user engagement and enablement, and was promoted to Head of Customer Success within the year - taking ownership of the entire customer side of the marketplace.</li>
           <li>Sold, onboarded, and managed <strong>20+ startup accounts</strong> simultaneously - delivering custom ICP targeting frameworks and go-to-market playbooks that drove measurable pipeline outcomes for each customer.</li>
@@ -1938,9 +1940,11 @@
           </div>
         </div>
 
-        <div class="role-systems">
-          <span class="role-systems-label">Systems</span>
-          <span>Sold and demonstrated Primer's audience platform across Meta, Google, and LinkedIn activation workflows, using stacked first-party and third-party data to build precise B2B audiences.</span>
+        <div class="role-tools" aria-label="Core tools used at Primer">
+          <span class="role-tools-label">Core tools</span>
+          <span class="role-tool">Salesforce</span>
+          <span class="role-tool">HubSpot</span>
+          <a class="role-tools-universe-link" href="#gtm-systems-universe">Explore the GTM Systems Universe ↑</a>
         </div>
 
         <ul class="role-bullets">
@@ -1999,9 +2003,14 @@
           </div>
         </div>
 
-        <div class="role-systems">
-          <span class="role-systems-label">Systems</span>
-          <span>Ran pipeline development in Salesforce and Verkada's sales-enablement, lead-routing, reporting, and product-demo systems while building the MDR operating model.</span>
+        <div class="role-tools" aria-label="Core tools used at Verkada">
+          <span class="role-tools-label">Core tools</span>
+          <span class="role-tool">Salesforce</span>
+          <span class="role-tool">HubSpot</span>
+          <span class="role-tool">Outreach</span>
+          <span class="role-tool">Sendoso</span>
+          <span class="role-tool">ZoomInfo</span>
+          <a class="role-tools-universe-link" href="#gtm-systems-universe">Explore the GTM Systems Universe ↑</a>
         </div>
 
         <ul class="role-bullets">
