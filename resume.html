@@ -1699,6 +1699,139 @@
     .main-header { min-height: 0; }
     .header-space-atmosphere { display: none; }
   }
+
+  /* ORBITAL MOTION UPGRADE */
+  .tool-universe {
+    background:
+      radial-gradient(circle at 50% 52%, rgba(213,134,72,0.17), transparent 22%),
+      radial-gradient(circle at 65% 36%, rgba(23,79,104,0.10), transparent 32%),
+      linear-gradient(180deg, rgba(255,255,255,0.44), rgba(240,241,237,0.08));
+  }
+
+  .tool-universe::before {
+    opacity: 0.58;
+    animation: universeStarDrift 32s linear infinite;
+  }
+
+  .universe-orbit {
+    overflow: visible;
+  }
+
+  .universe-orbit::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: conic-gradient(from 20deg, transparent 0 70%, rgba(213,134,72,0.48) 79%, transparent 88%);
+    opacity: 0.72;
+    -webkit-mask: radial-gradient(transparent calc(50% - 1px), #000 50%);
+    mask: radial-gradient(transparent calc(50% - 1px), #000 50%);
+    animation: orbitSignalSweep 10s linear infinite;
+  }
+
+  .universe-orbit:nth-of-type(2)::after { animation-duration: 14s; animation-direction: reverse; }
+  .universe-orbit:nth-of-type(3)::after { animation-duration: 19s; }
+  .universe-orbit:nth-of-type(4)::after { animation-duration: 24s; animation-direction: reverse; }
+
+  .universe-links { opacity: 0.13; }
+
+  .universe-ring-track {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 4;
+    width: var(--ring-width);
+    height: var(--ring-height);
+    transform: translate(-50%, -50%);
+    animation: universeTrackSpin var(--orbit-speed) linear infinite;
+    animation-direction: var(--orbit-direction, normal);
+    will-change: transform;
+  }
+
+  .universe-ring-track::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: conic-gradient(from 100deg, transparent 0 79%, color-mix(in srgb, var(--accent-warm) 34%, transparent) 86%, transparent 92%);
+    opacity: 0.46;
+    -webkit-mask: radial-gradient(transparent calc(50% - 2px), #000 50%, transparent calc(50% + 2px));
+    mask: radial-gradient(transparent calc(50% - 2px), #000 50%, transparent calc(50% + 2px));
+  }
+
+  .universe-ring-track.is-paused,
+  .universe-ring-track.is-paused .tool-node img { animation-play-state: paused; }
+
+  .universe-orbit-slot {
+    position: absolute;
+    left: var(--slot-x);
+    top: var(--slot-y);
+    width: 0;
+    height: 0;
+  }
+
+  .universe-ring-track .tool-node {
+    left: 0;
+    top: 0;
+  }
+
+  .universe-ring-track .tool-node img {
+    animation: universeIconCounterSpin var(--orbit-speed) linear infinite;
+    animation-direction: var(--counter-direction, normal);
+    will-change: transform;
+  }
+
+  .universe-core::before,
+  .universe-core::after {
+    content: '';
+    position: absolute;
+    border: 1px solid rgba(213,134,72,0.19);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .universe-core::before { inset: -20px; animation: coreOrbitPulse 3.4s ease-in-out infinite; }
+  .universe-core::after { inset: -38px; border-color: rgba(23,79,104,0.12); animation: coreOrbitPulse 3.4s ease-in-out -1.7s infinite; }
+
+  @keyframes universeTrackSpin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  @keyframes universeIconCounterSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+  }
+
+  @keyframes orbitSignalSweep {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes universeStarDrift {
+    from { background-position: 0 0, 33px 47px, 91px 19px; }
+    to { background-position: 83px 44px, -61px 118px, 160px -72px; }
+  }
+
+  @keyframes coreOrbitPulse {
+    0%, 100% { opacity: 0.32; transform: scale(0.96); }
+    50% { opacity: 0.86; transform: scale(1.04); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .universe-ring-track,
+    .universe-ring-track .tool-node img,
+    .universe-orbit::after,
+    .tool-universe::before,
+    .universe-core::before,
+    .universe-core::after { animation: none; }
+  }
+
+  @media print {
+    .universe-ring-track { display: contents; animation: none; }
+    .universe-orbit-slot { position: static; width: auto; height: auto; }
+    .universe-ring-track .tool-node img { animation: none; }
+  }
 </style>
 </head>
 <body>
@@ -2274,11 +2407,23 @@
   const universeHovercardSite = document.getElementById('universe-hovercard-site');
   const ringPlan = [7, 9, 10, 11];
   const ringGeometry = [
-    { x: 13, y: 12, offset: -90 },
-    { x: 23, y: 22, offset: -72 },
-    { x: 33, y: 32, offset: -82 },
-    { x: 41, y: 42, offset: -88 }
+    { width: 27, height: 25, offset: -90, speed: 28, direction: 'normal', counterDirection: 'normal' },
+    { width: 48, height: 46, offset: -72, speed: 38, direction: 'reverse', counterDirection: 'reverse' },
+    { width: 68, height: 65, offset: -82, speed: 52, direction: 'normal', counterDirection: 'normal' },
+    { width: 86, height: 84, offset: -88, speed: 68, direction: 'reverse', counterDirection: 'reverse' }
   ];
+
+  const orbitTracks = ringGeometry.map((geometry, index) => {
+    const track = document.createElement('div');
+    track.className = `universe-ring-track universe-ring-track-${index + 1}`;
+    track.style.setProperty('--ring-width', `${geometry.width}%`);
+    track.style.setProperty('--ring-height', `${geometry.height}%`);
+    track.style.setProperty('--orbit-speed', `${geometry.speed}s`);
+    track.style.setProperty('--orbit-direction', geometry.direction);
+    track.style.setProperty('--counter-direction', geometry.counterDirection);
+    universeNodes.appendChild(track);
+    return track;
+  });
 
   let ring = 0;
   let ringIndex = 0;
@@ -2289,13 +2434,20 @@
       ringIndex = 0;
     }
 
-    const geometry = ringGeometry[ring];
+    const currentRing = ring;
+    const geometry = ringGeometry[currentRing];
     const angle = geometry.offset + (360 / ringPlan[ring]) * ringIndex;
     const radians = angle * Math.PI / 180;
-    let x = 50 + Math.cos(radians) * geometry.x;
-    let y = 50 + Math.sin(radians) * geometry.y;
-    if (tool.name === 'OrangeSlice') y -= 2.6;
-    if (tool.name === 'Serper') y += 3.2;
+    let x = 50 + Math.cos(radians) * 50;
+    let y = 50 + Math.sin(radians) * 50;
+    if (tool.name === 'OrangeSlice') y -= 3.4;
+    if (tool.name === 'Serper') y += 3.8;
+
+    const slot = document.createElement('span');
+    slot.className = 'universe-orbit-slot';
+    slot.style.setProperty('--slot-x', `${x.toFixed(2)}%`);
+    slot.style.setProperty('--slot-y', `${y.toFixed(2)}%`);
+
     const node = document.createElement('span');
     node.tabIndex = 0;
     node.setAttribute('role', 'img');
@@ -2303,8 +2455,6 @@
     node.dataset.category = tool.category;
     node.dataset.categories = tool.categories.join(' ');
     node.dataset.index = String(index);
-    node.style.setProperty('--x', `${x.toFixed(2)}%`);
-    node.style.setProperty('--y', `${y.toFixed(2)}%`);
     node.style.setProperty('--pulse-speed', `${(3.4 + (index % 7) * 0.42).toFixed(2)}s`);
     node.style.setProperty('--pulse-delay', `${(-index * 0.19).toFixed(2)}s`);
     node.setAttribute('aria-label', `${tool.aliases.join(' and ')}. Website ${tool.domain}. ${tool.categories.map((category) => categoryLabels[category]).join(' and ')}. ${tool.details.join(' ')}`);
@@ -2313,16 +2463,8 @@
     logo.alt = '';
     logo.referrerPolicy = 'no-referrer';
     node.appendChild(logo);
-    universeNodes.appendChild(node);
-
-    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-    line.setAttribute('x1', '500');
-    line.setAttribute('y1', '360');
-    line.setAttribute('x2', (x * 10).toFixed(1));
-    line.setAttribute('y2', (y * 7.2).toFixed(1));
-    line.dataset.category = tool.category;
-    line.dataset.categories = tool.categories.join(' ');
-    universeLinks.appendChild(line);
+    slot.appendChild(node);
+    orbitTracks[currentRing].appendChild(slot);
 
     const showDetail = () => {
       document.querySelectorAll('.tool-node.is-selected').forEach((item) => item.classList.remove('is-selected'));
@@ -2332,24 +2474,34 @@
     const showWebsite = () => {
       universeHovercardLabel.textContent = tool.name;
       universeHovercardSite.textContent = websiteFor(tool.name);
-      universeHovercard.style.setProperty('--tip-x', `${x.toFixed(2)}%`);
-      universeHovercard.style.setProperty('--tip-y', `${y.toFixed(2)}%`);
-      universeHovercard.classList.toggle('is-below', y < 22);
-      universeHovercard.classList.add('is-visible');
-      universeHovercard.setAttribute('aria-hidden', 'false');
+      const updatePosition = () => {
+        const universeRect = document.getElementById('tool-universe').getBoundingClientRect();
+        const nodeRect = node.getBoundingClientRect();
+        const tipX = ((nodeRect.left + nodeRect.width / 2 - universeRect.left) / universeRect.width) * 100;
+        const tipY = ((nodeRect.top + nodeRect.height / 2 - universeRect.top) / universeRect.height) * 100;
+        universeHovercard.style.setProperty('--tip-x', `${tipX.toFixed(2)}%`);
+        universeHovercard.style.setProperty('--tip-y', `${tipY.toFixed(2)}%`);
+        universeHovercard.classList.toggle('is-below', tipY < 22);
+        universeHovercard.classList.add('is-visible');
+        universeHovercard.setAttribute('aria-hidden', 'false');
+      };
+      requestAnimationFrame(updatePosition);
     };
 
     const hideWebsite = () => {
       universeHovercard.classList.remove('is-visible');
       universeHovercard.setAttribute('aria-hidden', 'true');
+      orbitTracks[currentRing].classList.remove('is-paused');
     };
 
     node.addEventListener('mouseenter', () => {
+      orbitTracks[currentRing].classList.add('is-paused');
       showDetail();
       showWebsite();
     });
     node.addEventListener('mouseleave', hideWebsite);
     node.addEventListener('focus', () => {
+      orbitTracks[currentRing].classList.add('is-paused');
       showDetail();
       showWebsite();
     });
