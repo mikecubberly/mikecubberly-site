@@ -1833,13 +1833,16 @@
     .universe-ring-track .tool-node :is(img, .tool-initials) { animation: none; }
   }
   .universe-fineprint { position: static; width: 100%; transform: none; margin-top: 0.5rem; }
+  .universe-hovercard { width: min(15rem, calc(100% - 2rem)); left: clamp(7.5rem, var(--tip-x, 50%), calc(100% - 7.5rem)); }
+  .universe-hovercard-products { display: block; margin-top: 0.4rem; color: #e1e6ec; font-size: 0.62rem; line-height: 1.5; }
+  .universe-hovercard-products:empty { display: none; }
   .tool-initials { font: 700 10px/1 sans-serif; color: var(--ink); letter-spacing: -0.04em; }
   /* Keep the larger catalog inside circular orbits at every screen size. */
   .tool-universe { height: auto; aspect-ratio: 1; min-height: 0; }
   .universe-ring-track { height: auto; aspect-ratio: 1; }
-  .universe-ring-track .tool-node { width: 32px; height: 32px; padding: 0.35rem; }
+  .universe-ring-track .tool-node { width: 29px; height: 29px; padding: 0.3rem; }
   @media (max-width: 740px) {
-    .universe-ring-track .tool-node { width: 19px; height: 19px; padding: 2px; }
+    .universe-ring-track .tool-node { width: 17px; height: 17px; padding: 2px; }
     .universe-core { width: 54px; height: 54px; }
     .universe-core img { width: 43px; height: 43px; }
     .universe-core::before { inset: -8px; }
@@ -2030,6 +2033,7 @@
         <div class="universe-hovercard" id="universe-hovercard" role="tooltip" aria-hidden="true">
           <span class="universe-hovercard-label" id="universe-hovercard-label"></span>
           <span class="universe-hovercard-site" id="universe-hovercard-site"></span>
+          <span class="universe-hovercard-products" id="universe-hovercard-products"></span>
         </div>
         <div class="universe-fineprint">These are just some of the tools I use. I am constantly building out my stack based on each client's needs.</div>
       </div>
@@ -2273,6 +2277,64 @@
 </div>
 <script>
   const toolUniverseEntries = [
+    { name: 'Grok Bot', category: 'intelligence', detail: 'Desktop AI agents and computer-assisted task workflows.' },
+    { name: 'ChatGPT Sites', category: 'intelligence', detail: 'Website creation, interactive applications and publishing.' },
+    { name: 'ChatGPT Pages', category: 'intelligence', detail: 'Shared pages, project briefs and collaborative reference material.' },
+    {"name": "Airtable", "category": "automation", "detail": "Shared operational tables, intake forms and synchronized dashboards."},
+    {"name": "Zoom", "category": "automation", "detail": "Video meetings, webinars and business conversations."},
+    {"name": "Microsoft Excel", "category": "automation", "detail": "Lead-list workbooks, data review and spreadsheet analysis."},
+    {"name": "Microsoft Word", "category": "automation", "detail": "Agreements, document editing and tracked revisions."},
+    {"name": "Microsoft PowerPoint", "category": "automation", "detail": "Presentation files and business slide decks."},
+    {"name": "Microsoft Teams", "category": "automation", "detail": "Client meetings and collaboration."},
+    {"name": "Microsoft Edge", "category": "infrastructure", "detail": "Browser-based work and application access."},
+    {"name": "Bing Places", "category": "data", "detail": "Business listing setup and search visibility."},
+    {"name": "Apple Numbers", "category": "automation", "detail": "Spreadsheet files and business data review."},
+    {"name": "Apple Pages", "category": "automation", "detail": "Document review and editing."},
+    {"name": "Apple Keynote", "category": "automation", "detail": "Presentation files and visual communication."},
+    {"name": "Google Meet", "category": "automation", "detail": "Video meetings and calendar-linked calls."},
+    {"name": "Google Chrome", "category": "infrastructure", "detail": "Daily browser-based research and application workflows."},
+    {"name": "Google Forms", "category": "automation", "detail": "Forms, questionnaires and response collection."},
+    {"name": "Google Business Profile", "category": "data", "detail": "Business profile management and local search visibility."},
+    {"name": "Google Maps", "category": "data", "detail": "Location research, business discovery and event planning."},
+    {"name": "PDFgear", "category": "automation", "detail": "PDF review, form completion and document editing."},
+    {"name": "Granola", "category": "intelligence", "detail": "Meeting notes, shared call summaries and transcripts."},
+    {"name": "Discord", "category": "automation", "detail": "Community conversations and group communication."},
+    {"name": "Toby", "category": "automation", "detail": "Browser-tab organization and saved work sessions."},
+    {"name": "BuiltWith", "category": "data", "detail": "Website technology profiling and stack research."},
+    {"name": "Awesome Screenshot", "category": "automation", "detail": "Browser screenshots and screen recording."},
+    {"name": "tawk.to", "category": "automation", "detail": "Website live chat, visitor conversations and chat-widget configuration."},
+    {"name": "DocuSign", "category": "automation", "detail": "Electronic signatures and completed agreement workflows."},
+    {"name": "Adobe Acrobat Sign", "category": "automation", "detail": "Document review and electronic signatures."},
+    {"name": "Sai by Simular", "category": "intelligence", "detail": "Desktop agent tasks, workflow experiments and scheduled routines."},
+    {"name": "Incredible", "category": "intelligence", "detail": "Computer-based AI assistance and connected task workflows."},
+    {"name": "Muse", "category": "intelligence", "detail": "AI assistance across local files, apps and connected accounts."},
+    {"name": "Typeless", "category": "intelligence", "detail": "Voice dictation and turning speech into written work."},
+    {"name": "Freebuff", "category": "intelligence", "detail": "Desktop coding-agent experimentation."},
+    {"name": "Sila", "category": "automation", "detail": "Agent-assisted messaging, workspace collaboration and group calls."},
+    {"name": "ByteMail", "category": "automation", "detail": "Native Mac email and inbox management."},
+    {"name": "Namecheap", "category": "infrastructure", "detail": "Domain research and domain-account administration."},
+    {"name": "Pancake", "category": "data", "detail": "Audience definition, prospect discovery and lead-review workflows."},
+    {"name": "readywhen", "category": "intelligence", "detail": "Business follow-up assistance and daily work briefs."},
+    {"name": "Composio", "category": "infrastructure", "detail": "Connecting agent workflows with business applications."},
+    {"name": "Yutori", "category": "intelligence", "detail": "Web-monitoring agents and research experiments."},
+    {"name": "MillionPhones", "category": "data", "detail": "Professional contact discovery and phone-enrichment comparisons."},
+    {"name": "Will This Person Answer", "category": "data", "detail": "Phone-number checks and contact answerability scoring."},
+    {"name": "CheckThatPhone", "category": "data", "detail": "Phone validation and phone-data quality checks."},
+    {"name": "Abstract API", "category": "api", "detail": "Phone intelligence, carrier metadata and number-validation tests."},
+    {"name": "IPQualityScore", "category": "data", "detail": "Phone-quality research, validation and risk checks."},
+    {"name": "ScrapeCreators", "category": "data", "detail": "Social-profile research and public-contact enrichment tests."},
+    {"name": "Lurk", "category": "data", "detail": "Social lead monitoring and intent research."},
+    {"name": "Brave Search", "category": "data", "detail": "Search API access for research workflows."},
+    {"name": "OpenRouter", "category": "intelligence", "detail": "Access to multiple AI models through a shared API."},
+    {"name": "Auto.dev", "category": "data", "detail": "Vehicle-data API workflows and automotive research."},
+    {"name": "React", "category": "infrastructure", "detail": "Interactive website components and application interfaces."},
+    {"name": "TypeScript", "category": "infrastructure", "detail": "Typed JavaScript for application development."},
+    {"name": "Vite", "category": "infrastructure", "detail": "Application development and production build tooling."},
+    {"name": "Tailwind CSS", "category": "infrastructure", "detail": "Responsive interface styling and design systems."},
+    {"name": "Next.js", "category": "infrastructure", "detail": "Web application development and page structure."},
+    {"name": "Drizzle", "category": "infrastructure", "detail": "Typed database schemas and application data access."},
+    {"name": "shadcn/ui", "category": "infrastructure", "detail": "Reusable interface components and design-system building blocks."},
+    {"name": "Lucide", "category": "infrastructure", "detail": "Consistent interface icons for websites and applications."},
     { name: 'Outreach', category: 'automation', detail: 'Sales engagement and outbound sequencing.' },
     { name: 'Sendoso', category: 'automation', detail: 'Direct mail and gifting for account engagement.' },
     {"name": "Deepline", "category": "automation", "detail": "Research orchestration, enrichment workflows and repeatable GTM operations."},
@@ -2391,6 +2453,61 @@
   };
 
   const logoDomains = {
+    "Airtable": "airtable.com",
+    "Zoom": "zoom.us",
+    "Microsoft Excel": "microsoft.com",
+    "Microsoft Word": "microsoft.com",
+    "Microsoft PowerPoint": "microsoft.com",
+    "Microsoft Teams": "microsoft.com",
+    "Microsoft Edge": "microsoft.com",
+    "Bing Places": "microsoft.com",
+    "Apple Numbers": "apple.com",
+    "Apple Pages": "apple.com",
+    "Apple Keynote": "apple.com",
+    "Google Meet": "google.com",
+    "Google Chrome": "google.com",
+    "Google Forms": "google.com",
+    "Google Business Profile": "google.com",
+    "Google Maps": "google.com",
+    "PDFgear": "pdfgear.com",
+    "Granola": "granola.ai",
+    "Discord": "discord.com",
+    "Toby": "gettoby.com",
+    "BuiltWith": "builtwith.com",
+    "Awesome Screenshot": "awesomescreenshot.com",
+    "tawk.to": "tawk.to",
+    "DocuSign": "docusign.com",
+    "Adobe Acrobat Sign": "adobe.com",
+    "Sai by Simular": "sai.work",
+    "Incredible": "incredible.one",
+    "Muse": "muse.ai",
+    "Typeless": "typeless.com",
+    "Freebuff": "freebuff.com",
+    "Sila": "silahq.com",
+    "ByteMail": "bytemailapp.com",
+    "Namecheap": "namecheap.com",
+    "Pancake": "pancake.ai",
+    "readywhen": "readywhen.ai",
+    "Composio": "composio.dev",
+    "Yutori": "yutori.com",
+    "MillionPhones": "millionphones.com",
+    "Will This Person Answer": "willthispersonanswer.com",
+    "CheckThatPhone": "checkthatphone.com",
+    "Abstract API": "abstractapi.com",
+    "IPQualityScore": "ipqualityscore.com",
+    "ScrapeCreators": "scrapecreators.com",
+    "Lurk": "lurk.so",
+    "Brave Search": "brave.com",
+    "OpenRouter": "openrouter.ai",
+    "Auto.dev": "auto.dev",
+    "React": "react.dev",
+    "TypeScript": "typescriptlang.org",
+    "Vite": "vite.dev",
+    "Tailwind CSS": "tailwindcss.com",
+    "Next.js": "nextjs.org",
+    "Drizzle": "orm.drizzle.team",
+    "shadcn/ui": "ui.shadcn.com",
+    "Lucide": "lucide.dev",
     'Outreach': 'outreach.io',
     'Sendoso': 'sendoso.com',
     "Deepline": "deepline.com",
@@ -2450,7 +2567,7 @@
     'Codex': 'openai.com',
     'FullEnrich': 'fullenrich.com',
     'Resend': 'resend.com',
-    'QuickEnrich': 'quickenrich.com',
+    'QuickEnrich': 'quickenrich.io',
     'Retool': 'retool.com',
     'Serper': 'serper.dev',
     'Gemini': 'gemini.google.com',
@@ -2481,15 +2598,21 @@
 
   // One visible node per brand; product coverage stays in the accessible description.
   const brandGroups = {
-    'Google': ['Google Drive', 'Google Docs', 'Google Sheets', 'Google Slides', 'Gmail', 'Google Calendar', 'Google Search Console', 'Google Books'],
+    'Google': ['Google Drive', 'Google Docs', 'Google Sheets', 'Google Slides', 'Gmail', 'Google Calendar', 'Google Search Console', 'Google Books', 'Google Meet', 'Google Chrome', 'Google Forms', 'Google Business Profile', 'Google Maps'],
     'Cloudflare': ['Cloudflare Workers', 'Cloudflare Pages', 'Cloudflare D1', 'Cloudflare R2', 'Wrangler'],
-    'OpenAI': ['ChatGPT', 'Codex'],
-    'Anthropic': ['Claude']
+    'OpenAI': ['ChatGPT', 'Codex', 'ChatGPT Sites', 'ChatGPT Pages'],
+    'Anthropic': ['Claude'],
+    'Grok': ['Grok Bot'],
+    'Microsoft': ['Outlook', 'Microsoft Excel', 'Microsoft Word', 'Microsoft PowerPoint', 'Microsoft Teams', 'Microsoft Edge', 'Bing Places'],
+    'Apple': ['Apple Numbers', 'Apple Pages', 'Apple Keynote']
   };
   logoDomains.Google = 'google.com';
+  logoDomains.Microsoft = 'microsoft.com';
+  logoDomains.Apple = 'apple.com';
   const providerName = (name) => {
     const base = name.replace(/ API$/, '');
     if (base === 'Apollo') return 'Apollo.io';
+    if (base === 'Abstract') return 'Abstract API';
     return Object.keys(brandGroups).find((brand) => brandGroups[brand].includes(base)) || base;
   };
   const logoUrl = (name) => {
@@ -2588,6 +2711,7 @@
     node.tabIndex = 0;
     node.setAttribute('role', 'img');
     node.className = 'tool-node';
+    node.dataset.name = tool.name;
     node.dataset.category = tool.category;
     node.dataset.categories = tool.categories.join(' ');
     node.dataset.index = String(index);
@@ -2605,7 +2729,7 @@
       badge.setAttribute('aria-hidden', 'true');
       node.replaceChildren(badge);
     };
-    if (['GojiBerry', 'QuickEnrich', 'Oxygen'].includes(tool.name)) {
+    if (['GojiBerry', 'Oxygen'].includes(tool.name)) {
       showInitials();
     } else {
       logo.addEventListener('error', showInitials, { once: true });
@@ -2622,6 +2746,7 @@
     const showWebsite = () => {
       universeHovercardLabel.textContent = tool.name;
       universeHovercardSite.textContent = websiteFor(tool.name);
+      document.getElementById('universe-hovercard-products').textContent = tool.aliases.filter((name) => name !== tool.name).join(' · ');
       const updatePosition = () => {
         const universeRect = document.getElementById('tool-universe').getBoundingClientRect();
         const nodeRect = node.getBoundingClientRect();
@@ -2629,7 +2754,7 @@
         const tipY = ((nodeRect.top + nodeRect.height / 2 - universeRect.top) / universeRect.height) * 100;
         universeHovercard.style.setProperty('--tip-x', `${tipX.toFixed(2)}%`);
         universeHovercard.style.setProperty('--tip-y', `${tipY.toFixed(2)}%`);
-        universeHovercard.classList.toggle('is-below', tipY < 22);
+        universeHovercard.classList.toggle('is-below', tipY < 50);
         universeHovercard.classList.add('is-visible');
         universeHovercard.setAttribute('aria-hidden', 'false');
       };
@@ -2654,6 +2779,11 @@
       showWebsite();
     });
     node.addEventListener('blur', hideWebsite);
+    node.addEventListener('click', () => {
+      orbitTracks[currentRing].classList.add('is-paused');
+      showDetail();
+      showWebsite();
+    });
     ringIndex += 1;
   });
 
