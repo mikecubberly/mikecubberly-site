@@ -1832,6 +1832,20 @@
     .universe-orbit-slot { position: static; width: auto; height: auto; }
     .universe-ring-track .tool-node img { animation: none; }
   }
+  .universe-fineprint { position: static; width: 100%; transform: none; margin-top: 0.5rem; }
+  /* Keep the larger catalog inside circular orbits at every screen size. */
+  .tool-universe { height: auto; aspect-ratio: 1; min-height: 0; }
+  .universe-ring-track { height: auto; aspect-ratio: 1; }
+  .universe-ring-track .tool-node { width: 32px; height: 32px; padding: 0.35rem; }
+  @media (max-width: 740px) {
+    .universe-ring-track .tool-node { width: 19px; height: 19px; padding: 2px; }
+    .universe-core { width: 54px; height: 54px; }
+    .universe-core img { width: 43px; height: 43px; }
+    .universe-core::before { inset: -8px; }
+    .universe-core::after { inset: -15px; }
+    .universe-fineprint { font-size: 0.52rem; }
+  }
+  @media print { .tool-universe { aspect-ratio: auto; } }
 </style>
 </head>
 <body>
@@ -2258,6 +2272,53 @@
 </div>
 <script>
   const toolUniverseEntries = [
+    { name: 'Outreach', category: 'automation', detail: 'Sales engagement and outbound sequencing.' },
+    { name: 'Sendoso', category: 'automation', detail: 'Direct mail and gifting for account engagement.' },
+    {"name": "Deepline", "category": "automation", "detail": "Research orchestration, enrichment workflows and repeatable GTM operations."},
+    {"name": "Loopster", "category": "data", "detail": "Lead research, structured prospect tables and audience development."},
+    {"name": "Extruct", "category": "data", "detail": "Company discovery and evidence-led business research."},
+    {"name": "ZoomInfo", "category": "data", "detail": "Company intelligence, contact research and buying committee discovery."},
+    {"name": "MoltSets", "category": "data", "detail": "Company and contact enrichment for GTM research."},
+    {"name": "Pipecorn", "category": "data", "detail": "B2B company and prospect intelligence."},
+    {"name": "AKTA", "category": "data", "detail": "Company profiles, business signals and market research."},
+    {"name": "Oxygen", "category": "automation", "detail": "GTM workflow orchestration and research operations."},
+    {"name": "Exa", "category": "data", "detail": "Semantic web search and source discovery."},
+    {"name": "Tavily", "category": "data", "detail": "Web search, site mapping and content extraction."},
+    {"name": "Parallel", "category": "data", "detail": "Web research and structured information gathering."},
+    {"name": "Manus", "category": "intelligence", "detail": "Agent-assisted research, document synthesis and project execution."},
+    {"name": "ChatGPT", "category": "intelligence", "detail": "Research, planning, analysis and collaborative creation."},
+    {"name": "Claude", "category": "intelligence", "detail": "Writing, reasoning and code collaboration."},
+    {"name": "OpenArt", "category": "intelligence", "detail": "Creative image and video generation."},
+    {"name": "Wispr Flow", "category": "intelligence", "detail": "Voice dictation and capturing ideas for daily work."},
+    {"name": "Goldfish", "category": "intelligence", "detail": "Personal activity recall and project context."},
+    {"name": "Google Drive", "category": "automation", "detail": "Shared project files and document organization."},
+    {"name": "Google Docs", "category": "automation", "detail": "Collaborative proposals, agreements and operating documents."},
+    {"name": "Google Sheets", "category": "automation", "detail": "Prospect lists, review workflows, reporting and dashboards."},
+    {"name": "Google Slides", "category": "automation", "detail": "Presentations and client-facing storytelling."},
+    {"name": "Gmail", "category": "automation", "detail": "Email organization and follow-up workflows."},
+    {"name": "Google Calendar", "category": "automation", "detail": "Meeting coordination and availability planning."},
+    {"name": "Slack", "category": "automation", "detail": "Team coordination, alerts and operational updates."},
+    {"name": "Outlook", "category": "automation", "detail": "Business email and communication workflows."},
+    {"name": "Fathom", "category": "intelligence", "detail": "Meeting notes, call summaries and action-item review."},
+    {"name": "Fireflies", "category": "intelligence", "detail": "Meeting transcripts and conversation analysis."},
+    {"name": "Cal.com", "category": "automation", "detail": "Meeting booking and scheduling workflows."},
+    {"name": "Calendly", "category": "automation", "detail": "Scheduling links and prospect meeting coordination."},
+    {"name": "Stripe", "category": "infrastructure", "detail": "Payments and billing integrations."},
+    {"name": "LinkedIn", "category": "data", "detail": "Professional research, relationship context and prospect discovery."},
+    {"name": "Google Search Console", "category": "data", "detail": "Search visibility and website indexing checks."},
+    {"name": "Cloudflare Workers", "category": "infrastructure", "detail": "Serverless applications and application endpoints."},
+    {"name": "Cloudflare Pages", "category": "infrastructure", "detail": "Website publishing and static application delivery."},
+    {"name": "Cloudflare D1", "category": "infrastructure", "detail": "Application databases for serverless projects."},
+    {"name": "Cloudflare R2", "category": "infrastructure", "detail": "Object storage for application files and assets."},
+    {"name": "Node.js", "category": "infrastructure", "detail": "JavaScript application development and automation scripts."},
+    {"name": "Python", "category": "infrastructure", "detail": "Data processing, reporting and workflow automation."},
+    {"name": "JavaScript", "category": "infrastructure", "detail": "Interactive websites and browser-based applications."},
+    {"name": "Git", "category": "infrastructure", "detail": "Version control and reviewable release history."},
+    {"name": "Wrangler", "category": "infrastructure", "detail": "Command-line development and deployment for edge applications."},
+    {"name": "Clutch", "category": "data", "detail": "Agency profile management and service visibility."},
+    {"name": "GoodFirms", "category": "data", "detail": "Agency directory presence and profile refinement."},
+    {"name": "Agency Spotter", "category": "data", "detail": "Agency discovery profiles and directory visibility."},
+    {"name": "The Org", "category": "data", "detail": "Company and leadership research."},
     { name: 'Cloudflare', category: 'infrastructure', detail: 'Edge delivery, DNS, application security, Pages deployments, and serverless infrastructure.' },
     { name: 'GitHub', category: 'infrastructure', detail: 'Source control, production release workflows, and the operating record behind deployed BRG systems.' },
     { name: 'Clay', category: 'data', detail: 'Multi-provider enrichment, research waterfalls, scoring logic, and structured outbound data.' },
@@ -2329,6 +2390,53 @@
   };
 
   const logoDomains = {
+    'Outreach': 'outreach.io',
+    'Sendoso': 'sendoso.com',
+    "Deepline": "deepline.com",
+    "Loopster": "loopster.ai",
+    "Extruct": "extruct.ai",
+    "ZoomInfo": "zoominfo.com",
+    "MoltSets": "moltsets.com",
+    "Pipecorn": "pipecorn.com",
+    "AKTA": "akta.pro",
+    "Oxygen": "oxygen.io",
+    "Exa": "exa.ai",
+    "Tavily": "tavily.com",
+    "Parallel": "parallel.ai",
+    "Manus": "manus.im",
+    "ChatGPT": "chatgpt.com",
+    "Claude": "claude.ai",
+    "OpenArt": "openart.ai",
+    "Wispr Flow": "wisprflow.ai",
+    "Goldfish": "goldfish.ai",
+    "Google Drive": "drive.google.com",
+    "Google Docs": "docs.google.com",
+    "Google Sheets": "sheets.google.com",
+    "Google Slides": "slides.google.com",
+    "Gmail": "gmail.com",
+    "Google Calendar": "calendar.google.com",
+    "Slack": "slack.com",
+    "Outlook": "outlook.com",
+    "Fathom": "fathom.video",
+    "Fireflies": "fireflies.ai",
+    "Cal.com": "cal.com",
+    "Calendly": "calendly.com",
+    "Stripe": "stripe.com",
+    "LinkedIn": "linkedin.com",
+    "Google Search Console": "search.google.com",
+    "Cloudflare Workers": "workers.cloudflare.com",
+    "Cloudflare Pages": "pages.cloudflare.com",
+    "Cloudflare D1": "developers.cloudflare.com/d1",
+    "Cloudflare R2": "developers.cloudflare.com/r2",
+    "Node.js": "nodejs.org",
+    "Python": "python.org",
+    "JavaScript": "developer.mozilla.org",
+    "Git": "git-scm.com",
+    "Wrangler": "developers.cloudflare.com/workers/wrangler",
+    "Clutch": "clutch.co",
+    "GoodFirms": "goodfirms.co",
+    "Agency Spotter": "agencyspotter.com",
+    "The Org": "theorg.com",
     'Cloudflare': 'cloudflare.com',
     'GitHub': 'github.com',
     'Clay': 'clay.com',
@@ -2370,7 +2478,10 @@
     'Treg': 'treg.to'
   };
 
-  const providerName = (name) => name.replace(/ API$/, '');
+  const providerName = (name) => {
+    const base = name.replace(/ API$/, '');
+    return base === 'Apollo' ? 'Apollo.io' : base;
+  };
   const logoUrl = (name) => {
     const provider = providerName(name);
     const domain = logoDomains[provider] || `${provider.toLowerCase().replace(/[^a-z0-9]+/g, '')}.com`;
@@ -2380,7 +2491,7 @@
   const toolUniverse = toolUniverseEntries.reduce((uniqueTools, tool) => {
     const name = providerName(tool.name);
     const domain = websiteFor(name);
-    const existing = uniqueTools.find((item) => item.domain === domain);
+    const existing = uniqueTools.find((item) => item.name === name);
 
     if (existing) {
       if (!existing.aliases.includes(name)) existing.aliases.push(name);
@@ -2405,13 +2516,25 @@
   const universeHovercard = document.getElementById('universe-hovercard');
   const universeHovercardLabel = document.getElementById('universe-hovercard-label');
   const universeHovercardSite = document.getElementById('universe-hovercard-site');
-  const ringPlan = [7, 9, 10, 11];
-  const ringGeometry = [
-    { width: 27, height: 25, offset: -90, speed: 28, direction: 'normal', counterDirection: 'normal' },
-    { width: 48, height: 46, offset: -72, speed: 38, direction: 'reverse', counterDirection: 'reverse' },
-    { width: 68, height: 65, offset: -82, speed: 52, direction: 'normal', counterDirection: 'normal' },
-    { width: 86, height: 84, offset: -88, speed: 68, direction: 'reverse', counterDirection: 'reverse' }
-  ];
+  // Grow the orbital capacity with the catalog so no tools share a slot.
+  const ringCount = Math.max(4, Math.ceil(Math.sqrt(toolUniverse.length / 3)));
+  const weights = Array.from({ length: ringCount }, (_, i) => i + 2);
+  let remaining = toolUniverse.length;
+  const ringPlan = weights.map((weight, i) => {
+    const count = i === ringCount - 1 ? remaining : Math.round(toolUniverse.length * weight / weights.reduce((a, b) => a + b, 0));
+    remaining -= count;
+    return count;
+  });
+  const ringGeometry = weights.map((_, i) => ({
+    width: 27 + (65 * i / (ringCount - 1)),
+    height: 27 + (65 * i / (ringCount - 1)),
+    offset: -90 + i * 17,
+    speed: 42 + i * 17,
+    direction: i % 2 ? 'reverse' : 'normal',
+    counterDirection: i % 2 ? 'reverse' : 'normal'
+  }));
+  document.getElementById('tool-universe').insertAdjacentElement('afterend', document.querySelector('.universe-fineprint'));
+  document.querySelector('.universe-fineprint').textContent = `${toolUniverse.length} tools and counting. My stack keeps growing with every build.`;
 
   const orbitTracks = ringGeometry.map((geometry, index) => {
     const track = document.createElement('div');
@@ -2440,8 +2563,6 @@
     const radians = angle * Math.PI / 180;
     let x = 50 + Math.cos(radians) * 50;
     let y = 50 + Math.sin(radians) * 50;
-    if (tool.name === 'OrangeSlice') y -= 3.4;
-    if (tool.name === 'Serper') y += 3.8;
 
     const slot = document.createElement('span');
     slot.className = 'universe-orbit-slot';
