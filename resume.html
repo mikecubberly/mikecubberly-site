@@ -1775,7 +1775,7 @@
     top: 0;
   }
 
-  .universe-ring-track .tool-node img {
+  .universe-ring-track .tool-node :is(img, .tool-initials) {
     animation: universeIconCounterSpin var(--orbit-speed) linear infinite;
     animation-direction: var(--counter-direction, normal);
     will-change: transform;
@@ -1820,7 +1820,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     .universe-ring-track,
-    .universe-ring-track .tool-node img,
+    .universe-ring-track .tool-node :is(img, .tool-initials),
     .universe-orbit::after,
     .tool-universe::before,
     .universe-core::before,
@@ -1830,9 +1830,10 @@
   @media print {
     .universe-ring-track { display: contents; animation: none; }
     .universe-orbit-slot { position: static; width: auto; height: auto; }
-    .universe-ring-track .tool-node img { animation: none; }
+    .universe-ring-track .tool-node :is(img, .tool-initials) { animation: none; }
   }
   .universe-fineprint { position: static; width: 100%; transform: none; margin-top: 0.5rem; }
+  .tool-initials { font: 700 10px/1 sans-serif; color: var(--ink); letter-spacing: -0.04em; }
   /* Keep the larger catalog inside circular orbits at every screen size. */
   .tool-universe { height: auto; aspect-ratio: 1; min-height: 0; }
   .universe-ring-track { height: auto; aspect-ratio: 1; }
@@ -2478,9 +2479,18 @@
     'Treg': 'treg.to'
   };
 
+  // One visible node per brand; product coverage stays in the accessible description.
+  const brandGroups = {
+    'Google': ['Google Drive', 'Google Docs', 'Google Sheets', 'Google Slides', 'Gmail', 'Google Calendar', 'Google Search Console', 'Google Books'],
+    'Cloudflare': ['Cloudflare Workers', 'Cloudflare Pages', 'Cloudflare D1', 'Cloudflare R2', 'Wrangler'],
+    'OpenAI': ['ChatGPT', 'Codex'],
+    'Anthropic': ['Claude']
+  };
+  logoDomains.Google = 'google.com';
   const providerName = (name) => {
     const base = name.replace(/ API$/, '');
-    return base === 'Apollo' ? 'Apollo.io' : base;
+    if (base === 'Apollo') return 'Apollo.io';
+    return Object.keys(brandGroups).find((brand) => brandGroups[brand].includes(base)) || base;
   };
   const logoUrl = (name) => {
     const provider = providerName(name);
@@ -2494,7 +2504,8 @@
     const existing = uniqueTools.find((item) => item.name === name);
 
     if (existing) {
-      if (!existing.aliases.includes(name)) existing.aliases.push(name);
+      const alias = tool.name.replace(/ API$/, '');
+      if (!existing.aliases.includes(alias)) existing.aliases.push(alias);
       if (!existing.categories.includes(tool.category)) existing.categories.push(tool.category);
       if (!existing.details.includes(tool.detail)) existing.details.push(tool.detail);
       return uniqueTools;
@@ -2504,12 +2515,16 @@
       ...tool,
       name,
       domain,
-      aliases: [name],
+      aliases: [...new Set([name, tool.name.replace(/ API$/, '')])],
       categories: [tool.category],
       details: [tool.detail]
     });
     return uniqueTools;
-  }, []);
+  }, []).sort((a, b) => {
+    // Stable mixing avoids runs of related tools from the source catalog.
+    const position = (name) => Array.from(name).reduce((hash, char) => Math.imul(hash ^ char.charCodeAt(0), 16777619) >>> 0, 2166136261);
+    return position(a.name) - position(b.name);
+  });
 
   const universeNodes = document.getElementById('universe-nodes');
   const universeLinks = document.getElementById('universe-links');
@@ -2534,7 +2549,7 @@
     counterDirection: i % 2 ? 'reverse' : 'normal'
   }));
   document.getElementById('tool-universe').insertAdjacentElement('afterend', document.querySelector('.universe-fineprint'));
-  document.querySelector('.universe-fineprint').textContent = `${toolUniverse.length} tools and counting. My stack keeps growing with every build.`;
+  document.querySelector('.universe-fineprint').textContent = `${toolUniverse.length} platforms and counting. My stack keeps growing with every build.`;
 
   const orbitTracks = ringGeometry.map((geometry, index) => {
     const track = document.createElement('div');
@@ -2583,7 +2598,19 @@
     logo.src = logoUrl(tool.name);
     logo.alt = '';
     logo.referrerPolicy = 'no-referrer';
-    node.appendChild(logo);
+    const showInitials = () => {
+      const badge = document.createElement('span');
+      badge.className = 'tool-initials';
+      badge.textContent = ({ GojiBerry: 'GB', QuickEnrich: 'QE', Oxygen: 'OX' })[tool.name] || tool.name.slice(0, 2).toUpperCase();
+      badge.setAttribute('aria-hidden', 'true');
+      node.replaceChildren(badge);
+    };
+    if (['GojiBerry', 'QuickEnrich', 'Oxygen'].includes(tool.name)) {
+      showInitials();
+    } else {
+      logo.addEventListener('error', showInitials, { once: true });
+      node.appendChild(logo);
+    }
     slot.appendChild(node);
     orbitTracks[currentRing].appendChild(slot);
 
