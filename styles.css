@@ -114,6 +114,20 @@ img {
   font-size: 0.95rem;
 }
 
+.city {
+  white-space: nowrap;
+}
+
+.city-flag {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1rem;
+  margin-left: 0.4em;
+  vertical-align: -0.17em;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px #15171526;
+}
+
 .hero-portrait {
   position: relative;
   z-index: 1;
@@ -148,9 +162,10 @@ img {
 
 .work-heading {
   display: flex;
-  margin-bottom: clamp(4rem, 7vw, 6rem);
-  align-items: flex-end;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+  align-items: center;
   justify-content: space-between;
+  gap: 1.5rem;
 }
 
 .work-heading h2 {
@@ -161,41 +176,89 @@ img {
   line-height: 0.9;
 }
 
-.work-heading p {
-  max-width: 18rem;
-  margin: 0;
+.work-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(0.6rem, 1.5vw, 1.25rem);
   color: var(--muted);
   font-size: 0.85rem;
 }
 
-.work-list {
-  border-top: 1px solid var(--line);
+.work-brand img {
+  width: clamp(2.5rem, 5vw, 4rem);
+  height: auto;
 }
 
-.work-list a {
-  display: flex;
-  padding: clamp(1.75rem, 3.3vw, 3rem) 0;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 2rem;
-  border-bottom: 1px solid var(--line);
+.work-arrow {
+  display: grid;
+  width: 2.15rem;
+  height: 2.15rem;
+  flex: none;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--ink);
+  font-size: 1rem;
 }
 
-.work-list span {
-  font-size: clamp(1.85rem, 4vw, 3.8rem);
-  font-weight: 500;
-  letter-spacing: -0.055em;
-  line-height: 1;
+.work-brand:hover .work-arrow,
+.work-brand:focus-visible .work-arrow {
+  border-color: #ffc7d9;
+  background: #ffc7d9;
 }
 
-.work-list small {
+.race-feature {
+  margin: 0;
+}
+
+.race-gallery {
+  display: grid;
+  grid-template-columns: minmax(0, 2.3fr) minmax(0, 1fr);
+  gap: clamp(0.4rem, 1vw, 0.9rem);
+}
+
+.race-action,
+.race-trackside {
+  position: relative;
+}
+
+.race-action {
+  aspect-ratio: 1.85;
+}
+
+.race-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.4rem;
+  object-fit: cover;
+}
+
+.race-trackside .race-photo {
+  object-position: center 28%;
+}
+
+.race-mark {
+  position: absolute;
+  top: clamp(0.65rem, 2vw, 1.5rem);
+  left: clamp(0.65rem, 2vw, 1.5rem);
+  width: clamp(2.15rem, 4vw, 3.25rem);
+  height: auto;
+  padding: 0.3rem;
+  border-radius: 50%;
+  background: var(--bg);
+}
+
+.race-feature figcaption {
+  margin-top: 0.75rem;
   color: var(--muted);
-  font-size: 0.75rem;
-  text-align: right;
+  font-size: 0.78rem;
 }
 
-.work-list a:hover span {
-  color: var(--pink);
+.fact-logo {
+  width: 3rem;
+  height: auto;
 }
 
 .experience-section {
@@ -212,6 +275,37 @@ img {
   font-weight: 500;
   letter-spacing: -0.06em;
   line-height: 1.02;
+}
+
+.experience-logos {
+  display: grid;
+  margin: 0 0 2rem;
+  padding: 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.4rem, 1vw, 0.9rem);
+  list-style: none;
+}
+
+.experience-logos li {
+  display: grid;
+  min-height: clamp(4.5rem, 9vw, 7rem);
+  padding: 0.85rem;
+  place-items: center;
+  border: 1px solid #15171516;
+  border-radius: 0.4rem;
+  background: #fff;
+}
+
+.experience-logos img {
+  width: min(88%, 9.5rem);
+  height: auto;
+  max-height: 1.9rem;
+  object-fit: contain;
+}
+
+.experience-logos .experience-logo-primer {
+  border-color: #262142;
+  background: #262142;
 }
 
 .text-link {
@@ -507,7 +601,7 @@ img {
   }
 
   .hero-portrait {
-    width: min(108%, 30rem);
+    width: min(100%, 30rem);
     margin: 3.5rem auto 0;
     grid-column: 1;
     grid-row: 2;
@@ -529,22 +623,24 @@ img {
     font-size: 4.2rem;
   }
 
-  .work-list a {
-    gap: 0.7rem;
-    align-items: flex-start;
-    flex-direction: column;
+  .race-gallery {
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
   }
 
-  .work-list span {
-    font-size: 2.3rem;
+  .race-action {
+    aspect-ratio: 1.4;
   }
 
-  .work-list small {
-    text-align: left;
+  .race-trackside .race-photo {
+    object-position: center 36%;
   }
 
   .experience-section h2 {
     font-size: 2.7rem;
+  }
+
+  .experience-logos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .contact-section h2 {
